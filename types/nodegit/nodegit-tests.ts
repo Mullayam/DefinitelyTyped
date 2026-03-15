@@ -153,9 +153,20 @@ revwalk.fastWalk(100).then(oids => {
     }
 });
 
+const pushOptions: Git.PushOptions = {
+    callbacks: {
+        pushTransferProgress: (
+            pushedObjects, // $ExpectType number
+            totalObjects, // $ExpectType number
+            pushedBytes, // $ExpectType number
+        ) => {},
+    },
+};
+
 Git.Remote.create(repo, "test-repository", "https://github.com/test-repository/test-repository").then(remote => {
     remote.connect(Git.Enums.DIRECTION.FETCH, {});
     remote.defaultBranch(); // $ExpectType Promise<string>
+    remote.push([], pushOptions);
 });
 
 Git.Worktree.list(repo).then(list => {
@@ -205,6 +216,8 @@ Git.Rebase.init(repo, annotatedCommit, null, annotatedCommit, rebaseOptions).the
 });
 
 Git.Reset.reset(repo, commit, Git.Reset.TYPE.HARD, {}).catch(err => console.log(err));
+Git.Reset.default(repo, commit, []).catch(err => console.log(err));
+Git.Reset.fromAnnotated(repo, commit, Git.Reset.TYPE.HARD, {}).catch(err => console.log(err));
 
 Git.Cherrypick.cherrypick(repo, commit, {}).catch(err => console.log(err));
 
@@ -218,6 +231,14 @@ const cloneOptions: Git.CloneOptions = {
     fetchOpts: {
         callbacks: {
             credentials: () => Git.Credential.sshKeyFromAgent("git"),
+            transferProgress: (progress) => {
+                progress.indexedDeltas(); // $ExpectType number
+                progress.indexedObjects(); // $ExpectType number
+                progress.localObjects(); // $ExpectType number
+                progress.receivedBytes(); // $ExpectType number
+                progress.receivedObjects(); // $ExpectType number
+                progress.totalObjects(); // $ExpectType number
+            },
         },
     },
 };
@@ -226,3 +247,9 @@ Git.Clone("repo_url", "local_path", cloneOptions).then(repoClone => {
     // Use Repo
     repoClone.cleanup();
 });
+
+// Test the Reference.TYPE enum values
+Git.Reference.TYPE.INVALID; // $ExpectType TYPE.INVALID
+Git.Reference.TYPE.DIRECT; // $ExpectType TYPE.DIRECT
+Git.Reference.TYPE.SYMBOLIC; // $ExpectType TYPE.SYMBOLIC
+Git.Reference.TYPE.ALL; // $ExpectType TYPE.ALL

@@ -1,4 +1,4 @@
-// For Library Version: 1.132.0
+// For Library Version: 1.145.0
 
 declare module "sap/ui/commons/library" {
   import { ColorPickerMode as ColorPickerMode1 } from "sap/ui/unified/library";
@@ -13,7 +13,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'ButtonStyle'.
    *
-   * @deprecated (since 1.38) - (altogether with sap.ui.commons.Button). Use sap.m.Button with its sap.m.ButtonType
+   * @deprecated As of version 1.38. (altogether with sap.ui.commons.Button). Use sap.m.Button with its sap.m.ButtonType
    * instead.
    */
   export enum ButtonStyle {
@@ -40,14 +40,14 @@ declare module "sap/ui/commons/library" {
    * This enum is an alias for {@link sap.ui.unified.ColorPickerMode} and was only kept for compatibility
    * reasons. Please switch to the {@link sap.ui.unified.ColorPicker} API.
    *
-   * @deprecated (since 1.48.0) - Use {@link sap.ui.unified.ColorPickerMode} instead.
+   * @deprecated As of version 1.48.0. Use {@link sap.ui.unified.ColorPickerMode} instead.
    */
   export type ColorPickerMode = ColorPickerMode1;
 
   /**
    * Marker interface for common controls which are suitable for use within a FormattedTextView.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export interface FormattedTextViewControl {
     __implements__sap_ui_commons_FormattedTextViewControl: boolean;
@@ -59,7 +59,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'HorizontalDividerHeight'.
    *
-   * @deprecated (since 1.38) - without replacement.
+   * @deprecated As of version 1.38. without replacement.
    */
   export enum HorizontalDividerHeight {
     /**
@@ -85,7 +85,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'HorizontalDividerType'.
    *
-   * @deprecated (since 1.38) - without a replacement.
+   * @deprecated As of version 1.38. without a replacement.
    */
   export enum HorizontalDividerType {
     /**
@@ -98,12 +98,41 @@ declare module "sap/ui/commons/library" {
     Page = "Page",
   }
   /**
+   * Marker interface for controls that process instances of `window.Blob`, such as `window.File`. The implementation
+   * of this Interface should implement the following Interface methods:
+   * 	 - `getProcessedBlobsFromArray`
+   *
+   * @deprecated As of version 1.38. because it is part of the deprecated package sap.ui.commons
+   */
+  export interface IProcessableBlobs {
+    __implements__sap_ui_commons_IProcessableBlobs: boolean;
+
+    /**
+     * Allows to process Blobs before they get uploaded. This API can be used to create custom Blobs and upload
+     * these custom Blobs instead of the received/initials Blobs in the parameter `aBlobs`. One use case could
+     * be to create and upload zip archives based on the passed Blobs. The default implementation of this API
+     * should simply resolve with the received Blobs (parameter `aBlobs`).
+     *
+     * @since 1.144
+     * @deprecated As of version 1.144. Please use the IProcessableBlobs of the library sap.ui.unified instead.
+     *
+     * @returns A Promise that resolves with an array of Blobs which is used for the final uploading.
+     */
+    getProcessedBlobsFromArray(
+      /**
+       * The initial Blobs which can be used to determine a new array of Blobs for further processing.
+       */
+      aBlobs: Blob[]
+    ): Promise<Blob[]>;
+  }
+
+  /**
    * Available label display modes.
    *
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'LabelDesign'.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export enum LabelDesign {
     /**
@@ -121,7 +150,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'MenuBarDesign'.
    *
-   * @deprecated (since 1.38) - (altogether with sap.ui.commons.Toolbar). Use sap.m.Toolbar and its sap.m.ToolbarDesign
+   * @deprecated As of version 1.38. (altogether with sap.ui.commons.Toolbar). Use sap.m.Toolbar and its sap.m.ToolbarDesign
    * instead.
    */
   export enum MenuBarDesign {
@@ -140,7 +169,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'MessageType'.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.core.MessageType`.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.core.MessageType`.
    */
   export enum MessageType {
     /**
@@ -162,7 +191,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'PaginatorEvent'.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export enum PaginatorEvent {
     /**
@@ -192,7 +221,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'RatingIndicatorVisualMode'.
    *
-   * @deprecated (since 1.38) - Instead, use `sap.m.RatingIndicator` control.
+   * @deprecated As of version 1.38. Instead, use `sap.m.RatingIndicator` control.
    */
   export enum RatingIndicatorVisualMode {
     /**
@@ -214,7 +243,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'RowRepeaterDesign'.
    *
-   * @deprecated (since 1.38)
+   * @deprecated As of version 1.38.
    */
   export enum RowRepeaterDesign {
     /**
@@ -233,7 +262,7 @@ declare module "sap/ui/commons/library" {
   /**
    * A string type that represents subset of CSS size values. For the Splitter only px and % are allowed.
    *
-   * @deprecated (since 1.38) - Instead, use `sap.ui.layout.Splitter` control.
+   * @deprecated As of version 1.38. Instead, use `sap.ui.layout.Splitter` control.
    */
   export type SplitterSize = string;
 
@@ -243,7 +272,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'TextViewColor'.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export enum TextViewColor {
     /**
@@ -269,7 +298,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'TextViewDesign'.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export enum TextViewDesign {
     /**
@@ -327,7 +356,7 @@ declare module "sap/ui/commons/library" {
    * This is an alias for {@link sap.ui.core.TitleLevel} and only kept for compatibility reasons.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - Use {@link sap.ui.core.TitleLevel} instead.
+   * @deprecated As of version 1.16.0. Use {@link sap.ui.core.TitleLevel} instead.
    */
   export type TitleLevel = TitleLevel1;
 
@@ -337,7 +366,7 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'ToolbarDesign'.
    *
-   * @deprecated (since 1.38)
+   * @deprecated As of version 1.38.
    */
   export enum ToolbarDesign {
     /**
@@ -362,7 +391,7 @@ declare module "sap/ui/commons/library" {
    * Toolbar items must have a fixed height compatible with the toolbar being a single horizontal row. They
    * can refer to the toolbar's marker class "sapUiTb" to adjust their own theming when used inside a toolbar.
    *
-   * @deprecated (since 1.38) - (altogether with sap.ui.commons.Toolbar). Use sap.m.Toolbar instead.
+   * @deprecated As of version 1.38. (altogether with sap.ui.commons.Toolbar). Use sap.m.Toolbar instead.
    */
   export interface ToolbarItem {
     __implements__sap_ui_commons_ToolbarItem: boolean;
@@ -374,8 +403,8 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'ToolbarSeparatorDesign'.
    *
-   * @deprecated (since 1.38) - (altogether wuith sap.ui.commons.Toolbar). Use sap.m.Toolbar and its sap.m.ToolbarSeparator
-   * instead.
+   * @deprecated As of version 1.38. (altogether wuith sap.ui.commons.Toolbar). Use sap.m.Toolbar and its
+   * sap.m.ToolbarSeparator instead.
    */
   export enum ToolbarSeparatorDesign {
     /**
@@ -393,7 +422,8 @@ declare module "sap/ui/commons/library" {
    * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
    * 'TreeSelectionMode'.
    *
-   * @deprecated (since 1.38) - (altogether with sap.ui.commons.Tree). Use sap.m.Tree with its items instead.
+   * @deprecated As of version 1.38. (altogether with sap.ui.commons.Tree). Use sap.m.Tree with its items
+   * instead.
    */
   export enum TreeSelectionMode {
     /**
@@ -420,7 +450,7 @@ declare module "sap/ui/commons/library" {
    * 'TriStateCheckBoxState'.
    *
    * @since 1.7.2
-   * @deprecated (since 1.38) - Use {@link sap.m.CheckBox} and its properties instead.
+   * @deprecated As of version 1.38. Use {@link sap.m.CheckBox} and its properties instead.
    */
   export enum TriStateCheckBoxState {
     /**
@@ -444,7 +474,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'enums.AreaDesign'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum AreaDesign {
       /**
@@ -466,7 +496,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'enums.BorderDesign'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum BorderDesign {
       /**
@@ -484,7 +514,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'enums.Orientation'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum Orientation {
       /**
@@ -504,7 +534,7 @@ declare module "sap/ui/commons/library" {
      *
      * This is an alias for {@link sap.ui.layout.form.SimpleFormLayout} and only kept for compatibility reasons.
      *
-     * @deprecated (since 1.16.0) - Use {@link sap.ui.layout.form.SimpleFormLayout} instead.
+     * @deprecated As of version 1.16.0. Use {@link sap.ui.layout.form.SimpleFormLayout} instead.
      */
     type SimpleFormLayout = form1.SimpleFormLayout;
   }
@@ -516,7 +546,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'layout.BackgroundDesign'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum BackgroundDesign {
       /**
@@ -554,8 +584,8 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'layout.BorderLayoutAreaTypes'.
      *
-     * @deprecated (since 1.38) - (altogether with sap.ui.commons.layout.BorderLayout). Use sap.m.Page instead
-     * with its aggregations.
+     * @deprecated As of version 1.38. (altogether with sap.ui.commons.layout.BorderLayout). Use sap.m.Page
+     * instead with its aggregations.
      */
     enum BorderLayoutAreaTypes {
       /**
@@ -586,7 +616,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'layout.HAlign'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum HAlign {
       /**
@@ -618,7 +648,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'layout.Padding'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum Padding {
       /**
@@ -651,7 +681,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'layout.Separation'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum Separation {
       /**
@@ -689,7 +719,7 @@ declare module "sap/ui/commons/library" {
      * This enum is part of the 'sap/ui/commons/library' module export and must be accessed by the property
      * 'layout.VAlign'.
      *
-     * @deprecated (since 1.38)
+     * @deprecated As of version 1.38.
      */
     enum VAlign {
       /**
@@ -727,7 +757,7 @@ declare module "sap/ui/commons/Accordion" {
   /**
    * Contains N sections, acting as containers for any library control
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Panel}.
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Panel}.
    */
   export default class Accordion extends Control {
     /**
@@ -1178,7 +1208,7 @@ declare module "sap/ui/commons/Accordion" {
   /**
    * Describes the settings that can be provided to the Accordion constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Panel}.
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Panel}.
    */
   export interface $AccordionSettings extends $ControlSettings {
     /**
@@ -1300,7 +1330,7 @@ declare module "sap/ui/commons/AccordionSection" {
   /**
    * Represents a panel which is a container for other controls. The container does not have any layout function.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export default class AccordionSection extends UI5Element {
     /**
@@ -1469,7 +1499,7 @@ declare module "sap/ui/commons/AccordionSection" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 1.34) - Use Accordion's "openedSectionsId" property
+     * @deprecated As of version 1.34. Use Accordion's "openedSectionsId" property
      *
      * @returns Value of property `collapsed`
      */
@@ -1624,7 +1654,7 @@ declare module "sap/ui/commons/AccordionSection" {
   /**
    * Describes the settings that can be provided to the AccordionSection constructor.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export interface $AccordionSectionSettings extends $ElementSettings {
     /**
@@ -1640,7 +1670,7 @@ declare module "sap/ui/commons/AccordionSection" {
     /**
      * It is recommended to adjust the settings for the width when the section is set to 'collapsed'.
      *
-     * @deprecated (since 1.34) - Use Accordion's "openedSectionsId" property
+     * @deprecated As of version 1.34. Use Accordion's "openedSectionsId" property
      */
     collapsed?: boolean | PropertyBindingInfo | `{${string}}`;
 
@@ -1702,7 +1732,7 @@ declare module "sap/ui/commons/ApplicationHeader" {
    * The application header control stands on the top of any application page. It consists of 4 areas: Logo
    * area, Function area provided by application, Search area, Logout area.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.tnt.ToolHeader` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.tnt.ToolHeader` control.
    */
   export default class ApplicationHeader extends Control {
     /**
@@ -1982,7 +2012,7 @@ declare module "sap/ui/commons/ApplicationHeader" {
   /**
    * Describes the settings that can be provided to the ApplicationHeader constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.tnt.ToolHeader` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.tnt.ToolHeader` control.
    */
   export interface $ApplicationHeaderSettings extends $ControlSettings {
     /**
@@ -2043,7 +2073,7 @@ declare module "sap/ui/commons/Area" {
    * Used for defining areas in an image map. At runtime, the user can trigger an action, or start a URL,
    * from the single image areas.
    *
-   * @deprecated (since 1.38)
+   * @deprecated As of version 1.38.
    */
   export default class Area extends UI5Element {
     /**
@@ -2212,7 +2242,7 @@ declare module "sap/ui/commons/Area" {
   /**
    * Describes the settings that can be provided to the Area constructor.
    *
-   * @deprecated (since 1.38)
+   * @deprecated As of version 1.38.
    */
   export interface $AreaSettings extends $ElementSettings {
     /**
@@ -2257,7 +2287,7 @@ declare module "sap/ui/commons/AutoComplete" {
    * Textfield with list based text completion.
    *
    * @since 1.10.0
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Input}.
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Input}.
    */
   export default class AutoComplete extends ComboBox implements ToolbarItem {
     __implements__sap_ui_commons_ToolbarItem: boolean;
@@ -2414,15 +2444,15 @@ declare module "sap/ui/commons/AutoComplete" {
      */
     getEnableScrolling(): boolean;
     /**
-     * @deprecated (since 1.10.0) - NOT SUPPORTED
+     * @deprecated As of version 1.10.0. NOT SUPPORTED
      */
     getListBox(): string;
     /**
-     * @deprecated (since 1.10.0) - NOT SUPPORTED
+     * @deprecated As of version 1.10.0. NOT SUPPORTED
      */
     getSelectedItemId(): string;
     /**
-     * @deprecated (since 1.10.0) - NOT SUPPORTED
+     * @deprecated As of version 1.10.0. NOT SUPPORTED
      */
     getSelectedKey(): string;
     /**
@@ -2458,22 +2488,22 @@ declare module "sap/ui/commons/AutoComplete" {
       fFilter?: Function
     ): void;
     /**
-     * @deprecated (since 1.10.0) - NOT SUPPORTED
+     * @deprecated As of version 1.10.0. NOT SUPPORTED
      */
     setListBox(oListBox: string | ListBox): this;
     /**
-     * @deprecated (since 1.10.0) - NOT SUPPORTED
+     * @deprecated As of version 1.10.0. NOT SUPPORTED
      */
     setSelectedItemId(sSelectedItemId: string): this;
     /**
-     * @deprecated (since 1.10.0) - NOT SUPPORTED
+     * @deprecated As of version 1.10.0. NOT SUPPORTED
      */
     setSelectedKey(sSelectedKey: string): this;
   }
   /**
    * Describes the settings that can be provided to the AutoComplete constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Input}.
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Input}.
    */
   export interface $AutoCompleteSettings extends $ComboBoxSettings {
     /**
@@ -2524,7 +2554,7 @@ declare module "sap/ui/commons/layout/BorderLayout" {
    * The object contains the available parameters for BorderLayout's Area.
    *
    * @since 1.110
-   * @deprecated (since 1.110) - as it is an integral part of the already deprecated {@link sap.ui.commons.BorderLayout}.
+   * @deprecated As of version 1.110. as it is an integral part of the already deprecated {@link sap.ui.commons.BorderLayout}.
    */
   export type BorderLayoutAreaData = {
     /**
@@ -2555,7 +2585,7 @@ declare module "sap/ui/commons/layout/BorderLayout" {
    * Footer; Begin: Left/right-hand side panel; Center: Content area in the middle; End: Right/left-hand side
    * panel.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Page}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Page}
    */
   export default class BorderLayout extends Control {
     /**
@@ -2805,7 +2835,7 @@ declare module "sap/ui/commons/layout/BorderLayout" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 1.5.2) - replaced by the global configuration for the page
+     * @deprecated As of version 1.5.2. replaced by the global configuration for the page
      *
      * @returns Value of property `rtl`
      */
@@ -2990,7 +3020,7 @@ declare module "sap/ui/commons/layout/BorderLayout" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 1.5.2) - replaced by the global configuration for the page
+     * @deprecated As of version 1.5.2. replaced by the global configuration for the page
      *
      * @returns Reference to `this` in order to allow method chaining
      */
@@ -3034,13 +3064,13 @@ declare module "sap/ui/commons/layout/BorderLayout" {
   /**
    * Describes the settings that can be provided to the BorderLayout constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Page}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Page}
    */
   export interface $BorderLayoutSettings extends $ControlSettings {
     /**
      * The RTL setting swaps the areas Begin and End.
      *
-     * @deprecated (since 1.5.2) - replaced by the global configuration for the page
+     * @deprecated As of version 1.5.2. replaced by the global configuration for the page
      */
     rtl?: boolean | PropertyBindingInfo | `{${string}}`;
 
@@ -3104,7 +3134,7 @@ declare module "sap/ui/commons/Button" {
    * Enables users to trigger actions such as save or print. For the button UI, you can define some text or
    * an icon, or both.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Button}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Button}
    */
   export default class Button
     extends Control
@@ -3400,7 +3430,7 @@ declare module "sap/ui/commons/Button" {
      *
      * @returns Value of property `style`
      */
-    getStyle(): ButtonStyle | keyof typeof ButtonStyle;
+    getStyle(): ButtonStyle;
     /**
      * Gets current value of property {@link #getStyled styled}.
      *
@@ -3695,7 +3725,7 @@ declare module "sap/ui/commons/Button" {
   /**
    * Describes the settings that can be provided to the Button constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Button}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Button}
    */
   export interface $ButtonSettings extends $ControlSettings {
     /**
@@ -3812,8 +3842,8 @@ declare module "sap/ui/commons/Callout" {
    * Callout is a small popup with some useful information and links that is shown when a mouse is hovered
    * over a specific view element.
    *
-   * @deprecated (since 1.38) - If you want to achieve a similar behavior, use a `sap.m.Popover` control and
-   * open it next to your control.
+   * @deprecated As of version 1.38. If you want to achieve a similar behavior, use a `sap.m.Popover` control
+   * and open it next to your control.
    */
   export default class Callout extends CalloutBase {
     /**
@@ -3959,8 +3989,8 @@ declare module "sap/ui/commons/Callout" {
   /**
    * Describes the settings that can be provided to the Callout constructor.
    *
-   * @deprecated (since 1.38) - If you want to achieve a similar behavior, use a `sap.m.Popover` control and
-   * open it next to your control.
+   * @deprecated As of version 1.38. If you want to achieve a similar behavior, use a `sap.m.Popover` control
+   * and open it next to your control.
    */
   export interface $CalloutSettings extends $CalloutBaseSettings {
     /**
@@ -3987,7 +4017,7 @@ declare module "sap/ui/commons/CalloutBase" {
   /**
    * CalloutBase is a building block for Callout. Do not use it directly. Use the Callout control instead
    *
-   * @deprecated (since 1.38) - If you want to achieve a similar behavior, use the `sap.m.Popover` control
+   * @deprecated As of version 1.38. If you want to achieve a similar behavior, use the `sap.m.Popover` control
    * and open it next to your control.
    */
   export default class CalloutBase extends TooltipBase {
@@ -4404,7 +4434,7 @@ declare module "sap/ui/commons/CalloutBase" {
   /**
    * Describes the settings that can be provided to the CalloutBase constructor.
    *
-   * @deprecated (since 1.38) - If you want to achieve a similar behavior, use the `sap.m.Popover` control
+   * @deprecated As of version 1.38. If you want to achieve a similar behavior, use the `sap.m.Popover` control
    * and open it next to your control.
    */
   export interface $CalloutBaseSettings extends $TooltipBaseSettings {
@@ -4515,7 +4545,7 @@ declare module "sap/ui/commons/Carousel" {
    * you. Navigation is done through buttons or keys.
    *
    * @since 1.8.0
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Carousel` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Carousel` control.
    */
   export default class Carousel extends Control {
     /**
@@ -4709,7 +4739,7 @@ declare module "sap/ui/commons/Carousel" {
      *
      * @returns Value of property `orientation`
      */
-    getOrientation(): enums.Orientation | keyof typeof enums.Orientation;
+    getOrientation(): enums.Orientation;
     /**
      * Gets current value of property {@link #getVisibleItems visibleItems}.
      *
@@ -4969,7 +4999,7 @@ declare module "sap/ui/commons/Carousel" {
   /**
    * Describes the settings that can be provided to the Carousel constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Carousel` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Carousel` control.
    */
   export interface $CarouselSettings extends $ControlSettings {
     /**
@@ -5051,7 +5081,7 @@ declare module "sap/ui/commons/CheckBox" {
    * Provides a box which can be flagged, the box has a label. A check box can either stand alone, or in a
    * group with other check boxes. As an option, the boxes can initially be set to status 'Not Editable'.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.CheckBox` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.CheckBox` control.
    */
   export default class CheckBox extends Control implements IFormContent {
     __implements__sap_ui_core_IFormContent: boolean;
@@ -5314,7 +5344,7 @@ declare module "sap/ui/commons/CheckBox" {
      *
      * @returns Value of property `textDirection`
      */
-    getTextDirection(): TextDirection | keyof typeof TextDirection;
+    getTextDirection(): TextDirection;
     /**
      * Gets current value of property {@link #getValueState valueState}.
      *
@@ -5325,7 +5355,7 @@ declare module "sap/ui/commons/CheckBox" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -5530,7 +5560,7 @@ declare module "sap/ui/commons/CheckBox" {
   /**
    * Describes the settings that can be provided to the CheckBox constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.CheckBox` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.CheckBox` control.
    */
   export interface $CheckBoxSettings extends $ControlSettings {
     /**
@@ -5629,7 +5659,7 @@ declare module "sap/ui/commons/ColorPicker" {
    * This control gives the user the opportunity to choose a color. The color can be defined using HEX-, RGB-
    * or HSV-values or a CSS colorname.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.ui.unified.ColorPicker}
+   * @deprecated As of version 1.38. replaced by {@link sap.ui.unified.ColorPicker}
    */
   export default class ColorPicker extends ColorPicker1 {
     /**
@@ -5704,7 +5734,7 @@ declare module "sap/ui/commons/ColorPicker" {
   /**
    * Describes the settings that can be provided to the ColorPicker constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.ui.unified.ColorPicker}
+   * @deprecated As of version 1.38. replaced by {@link sap.ui.unified.ColorPicker}
    */
   export interface $ColorPickerSettings extends $ColorPickerSettings1 {}
 }
@@ -5738,7 +5768,7 @@ declare module "sap/ui/commons/ComboBox" {
    * of a list of pre-defined items. The choosable items can be provided in the form of a complete `ListBox`,
    * single `ListItems`.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.ComboBox}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.ComboBox}
    */
   export default class ComboBox extends TextField implements ToolbarItem {
     __implements__sap_ui_commons_ToolbarItem: boolean;
@@ -6159,7 +6189,7 @@ declare module "sap/ui/commons/ComboBox" {
   /**
    * Describes the settings that can be provided to the ComboBox constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.ComboBox}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.ComboBox}
    */
   export interface $ComboBoxSettings extends $TextFieldSettings {
     /**
@@ -6249,7 +6279,7 @@ declare module "sap/ui/commons/DatePicker" {
    * DatePicker should load the unified library. Otherwise it will be loaded the first time a DatePicker is
    * opened.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.DatePicker}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.DatePicker}
    */
   export default class DatePicker extends TextField {
     /**
@@ -6406,7 +6436,7 @@ declare module "sap/ui/commons/DatePicker" {
   /**
    * Describes the settings that can be provided to the DatePicker constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.DatePicker}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.DatePicker}
    */
   export interface $DatePickerSettings extends $TextFieldSettings {
     /**
@@ -6453,7 +6483,7 @@ declare module "sap/ui/commons/Dialog" {
    * such as popups with fixed sizes, popups with unlimited width, scrolling bars for large windows, and control
    * nesting (for example, a drop-down list can be included in the window).
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Dialog` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Dialog` control.
    */
   export default class Dialog extends Control implements PopupInterface {
     __implements__sap_ui_core_PopupInterface: boolean;
@@ -6651,7 +6681,7 @@ declare module "sap/ui/commons/Dialog" {
      *
      * @returns Value of property `accessibleRole`
      */
-    getAccessibleRole(): AccessibleRole | keyof typeof AccessibleRole;
+    getAccessibleRole(): AccessibleRole;
     /**
      * Gets current value of property {@link #getApplyContentPadding applyContentPadding}.
      *
@@ -6701,9 +6731,7 @@ declare module "sap/ui/commons/Dialog" {
      *
      * @returns Value of property `contentBorderDesign`
      */
-    getContentBorderDesign():
-      | enums.BorderDesign
-      | keyof typeof enums.BorderDesign;
+    getContentBorderDesign(): enums.BorderDesign;
     /**
      * ID of the element which is the current target of the association {@link #getDefaultButton defaultButton},
      * or `null`.
@@ -6716,7 +6744,7 @@ declare module "sap/ui/commons/Dialog" {
      * on its `openState`. Descendant controls that honor the enabled state of their ancestors will appear disabled
      * after the dialog is closed.
      *
-     * @experimental - Whether a dialog is regarded as "enabled" during the state transitions (OPENING, CLOSING)
+     * @experimental Whether a dialog is regarded as "enabled" during the state transitions (OPENING, CLOSING)
      * is not fully decided. Currently, it is enabled during the OPENING phase and disabled during the CLOSING
      * phase. The only potential change would be to treat the OPENING phase as disabled as well. Applications
      * should be prepared to receive events from "enabled" controls after they called open() on the dialog until
@@ -6815,7 +6843,7 @@ declare module "sap/ui/commons/Dialog" {
     /**
      * Indicates whether the Dialog is currently open, closed, or transitioning between these states.
      */
-    getOpenState(): OpenState | keyof typeof OpenState;
+    getOpenState(): OpenState;
     /**
      * Gets current value of property {@link #getResizable resizable}.
      *
@@ -7333,7 +7361,7 @@ declare module "sap/ui/commons/Dialog" {
   /**
    * Describes the settings that can be provided to the Dialog constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Dialog` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Dialog` control.
    */
   export interface $DialogSettings extends $ControlSettings {
     /**
@@ -7524,7 +7552,7 @@ declare module "sap/ui/commons/DropdownBox" {
    * The control provides a field that allows end users to an entry out of a list of pre-defined items. The
    * choosable items can be provided in the form of a complete `ListBox`, single `ListItems`.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.ComboBox}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.ComboBox}
    */
   export default class DropdownBox extends ComboBox {
     /**
@@ -7973,7 +8001,7 @@ declare module "sap/ui/commons/DropdownBox" {
   /**
    * Describes the settings that can be provided to the DropdownBox constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.ComboBox}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.ComboBox}
    */
   export interface $DropdownBoxSettings extends $ComboBoxSettings {
     /**
@@ -8031,12 +8059,32 @@ declare module "sap/ui/commons/DropdownBox" {
 }
 
 declare module "sap/ui/commons/FileUploader" {
+  import { default as Control, $ControlSettings } from "sap/ui/core/Control";
+
   import {
-    default as FileUploader1,
-    $FileUploaderSettings as $FileUploaderSettings1,
-  } from "sap/ui/unified/FileUploader";
+    IFormContent,
+    ID,
+    URI,
+    ValueState,
+    CSSSize,
+  } from "sap/ui/core/library";
+
+  import { IProcessableBlobs } from "sap/ui/commons/library";
+
+  import FileUploaderParameter from "sap/ui/commons/FileUploaderParameter";
+
+  import Event from "sap/ui/base/Event";
+
+  import FileUploaderHttpRequestMethod from "sap/ui/commons/FileUploaderHttpRequestMethod";
 
   import ElementMetadata from "sap/ui/core/ElementMetadata";
+
+  import FileUploaderXHRSettings from "sap/ui/commons/FileUploaderXHRSettings";
+
+  import {
+    PropertyBindingInfo,
+    AggregationBindingInfo,
+  } from "sap/ui/base/ManagedObject";
 
   /**
    * The framework generates an input field and a button with text "Browse ...". The API supports features
@@ -8044,19 +8092,21 @@ declare module "sap/ui/commons/FileUploader" {
    * with explicit calls, adjustable control sizes, text display after uploads, or tooltips containing complete
    * file paths.
    *
-   * @deprecated (since 1.21.0) - Please use the control sap.ui.unified.FileUploader of the library sap.ui.unified
+   * @deprecated As of version 1.21.0. Please use the control sap.ui.unified.FileUploader of the library sap.ui.unified
    * instead.
    */
-  export default class FileUploader extends FileUploader1 {
+  export default class FileUploader
+    extends Control
+    implements IFormContent, IProcessableBlobs
+  {
+    __implements__sap_ui_core_IFormContent: boolean;
+    __implements__sap_ui_commons_IProcessableBlobs: boolean;
     /**
      * Constructor for a new FileUploader.
      *
      * Accepts an object literal `mSettings` that defines initial property values, aggregated and associated
      * objects as well as event handlers. See {@link sap.ui.base.ManagedObject#constructor} for a general description
      * of the syntax of the settings object.
-     *
-     * This class does not have its own settings, but all settings applicable to the base type {@link sap.ui.unified.FileUploader#constructor sap.ui.unified.FileUploader }
-     * can be used.
      */
     constructor(
       /**
@@ -8070,9 +8120,6 @@ declare module "sap/ui/commons/FileUploader" {
      * Accepts an object literal `mSettings` that defines initial property values, aggregated and associated
      * objects as well as event handlers. See {@link sap.ui.base.ManagedObject#constructor} for a general description
      * of the syntax of the settings object.
-     *
-     * This class does not have its own settings, but all settings applicable to the base type {@link sap.ui.unified.FileUploader#constructor sap.ui.unified.FileUploader }
-     * can be used.
      */
     constructor(
       /**
@@ -8089,7 +8136,7 @@ declare module "sap/ui/commons/FileUploader" {
      * Creates a new subclass of class sap.ui.commons.FileUploader with name `sClassName` and enriches it with
      * the information contained in `oClassInfo`.
      *
-     * `oClassInfo` might contain the same kind of information as described in {@link sap.ui.unified.FileUploader.extend}.
+     * `oClassInfo` might contain the same kind of information as described in {@link sap.ui.core.Control.extend}.
      *
      *
      * @returns Created class / constructor function
@@ -8116,40 +8163,2962 @@ declare module "sap/ui/commons/FileUploader" {
      * @returns Metadata object describing this class
      */
     static getMetadata(): ElementMetadata;
+    /**
+     * Aborts the currently running upload.
+     *
+     * @since 1.24.0
+     */
+    abort(
+      /**
+       * The name of the parameter within the `headerParameters` aggregation to be checked.
+       *
+       * **Note:** aborts the request, sent with a header parameter with the provided name. The parameter is taken
+       * into account if the sHeaderParameterValue parameter is provided too.
+       */
+      sHeaderParameterName: string,
+      /**
+       * The value of the parameter within the `headerParameters` aggregation to be checked.
+       *
+       * **Note:** aborts the request, sent with a header parameter with the provided value. The parameter is
+       * taken into account if the sHeaderParameterName parameter is provided too.
+       */
+      sHeaderParameterValue: string
+    ): void;
+    /**
+     * Adds some ariaDescribedBy into the association {@link #getAriaDescribedBy ariaDescribedBy}.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    addAriaDescribedBy(
+      /**
+       * The ariaDescribedBy to add; if empty, nothing is inserted
+       */
+      vAriaDescribedBy: ID | Control
+    ): this;
+    /**
+     * Adds some ariaLabelledBy into the association {@link #getAriaLabelledBy ariaLabelledBy}.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    addAriaLabelledBy(
+      /**
+       * The ariaLabelledBy to add; if empty, nothing is inserted
+       */
+      vAriaLabelledBy: ID | Control
+    ): this;
+    /**
+     * Adds some headerParameter to the aggregation {@link #getHeaderParameters headerParameters}.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    addHeaderParameter(
+      /**
+       * The headerParameter to add; if empty, nothing is inserted
+       */
+      oHeaderParameter: FileUploaderParameter
+    ): this;
+    /**
+     * Adds some parameter to the aggregation {@link #getParameters parameters}.
+     *
+     * @since 1.12.2
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    addParameter(
+      /**
+       * The parameter to add; if empty, nothing is inserted
+       */
+      oParameter: FileUploaderParameter
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:afterDialogClose afterDialogClose} event of
+     * this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Fired after select file dialog closes.
+     *
+     * @since 1.102.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachAfterDialogClose(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:afterDialogClose afterDialogClose} event of
+     * this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Fired after select file dialog closes.
+     *
+     * @since 1.102.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachAfterDialogClose(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:beforeDialogOpen beforeDialogOpen} event of
+     * this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Fired before select file dialog opens.
+     *
+     * @since 1.102.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachBeforeDialogOpen(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:beforeDialogOpen beforeDialogOpen} event of
+     * this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Fired before select file dialog opens.
+     *
+     * @since 1.102.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachBeforeDialogOpen(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:change change} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the value of the file path has been changed.
+     *
+     * **Note:** Keep in mind that because of the HTML input element of type file, the event is also fired in
+     * Chrome browser when the Cancel button of the uploads window is pressed.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachChange(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$ChangeEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:change change} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the value of the file path has been changed.
+     *
+     * **Note:** Keep in mind that because of the HTML input element of type file, the event is also fired in
+     * Chrome browser when the Cancel button of the uploads window is pressed.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachChange(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$ChangeEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:fileAllowed fileAllowed} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the file is allowed for upload on client side.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFileAllowed(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:fileAllowed fileAllowed} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the file is allowed for upload on client side.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFileAllowed(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:fileEmpty fileEmpty} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the size of the file is 0
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFileEmpty(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FileEmptyEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:fileEmpty fileEmpty} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the size of the file is 0
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFileEmpty(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FileEmptyEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:filenameLengthExceed filenameLengthExceed} event
+     * of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired, if the filename of a chosen file is longer than the value specified with the `maximumFilenameLength`
+     * property.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFilenameLengthExceed(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FilenameLengthExceedEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:filenameLengthExceed filenameLengthExceed} event
+     * of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired, if the filename of a chosen file is longer than the value specified with the `maximumFilenameLength`
+     * property.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFilenameLengthExceed(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FilenameLengthExceedEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:fileSizeExceed fileSizeExceed} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the size of a file is above the `maximumFileSize` property. This event is not supported
+     * by Internet Explorer 9 (same restriction as for the property `maximumFileSize`).
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFileSizeExceed(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FileSizeExceedEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:fileSizeExceed fileSizeExceed} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the size of a file is above the `maximumFileSize` property. This event is not supported
+     * by Internet Explorer 9 (same restriction as for the property `maximumFileSize`).
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachFileSizeExceed(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FileSizeExceedEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:typeMissmatch typeMissmatch} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the type of a file does not match the `mimeType` or `fileType` property.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachTypeMissmatch(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$TypeMissmatchEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:typeMissmatch typeMissmatch} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired when the type of a file does not match the `mimeType` or `fileType` property.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachTypeMissmatch(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$TypeMissmatchEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadAborted uploadAborted} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired after the current upload has been aborted.
+     *
+     * This event is only supported with property `sendXHR` set to true, i.e. the event is not supported in
+     * Internet Explorer 9.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadAborted(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadAbortedEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadAborted uploadAborted} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired after the current upload has been aborted.
+     *
+     * This event is only supported with property `sendXHR` set to true, i.e. the event is not supported in
+     * Internet Explorer 9.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadAborted(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadAbortedEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadComplete uploadComplete} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired as soon as the upload request is completed (either successful or unsuccessful).
+     *
+     * To see if the upload request was successful, check the `status` parameter for a value 2xx. The actual
+     * progress of the upload can be monitored by listening to the `uploadProgress` event. However, this covers
+     * only the client side of the upload process and does not give any success status from the server.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadComplete(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadCompleteEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadComplete uploadComplete} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired as soon as the upload request is completed (either successful or unsuccessful).
+     *
+     * To see if the upload request was successful, check the `status` parameter for a value 2xx. The actual
+     * progress of the upload can be monitored by listening to the `uploadProgress` event. However, this covers
+     * only the client side of the upload process and does not give any success status from the server.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadComplete(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadCompleteEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadProgress uploadProgress} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired after the upload has started and before the upload is completed.
+     *
+     * It contains progress information related to the running upload. Depending on file size, band width and
+     * used browser the event is fired once or multiple times.
+     *
+     * This event is only supported with property `sendXHR` set to true, i.e. the event is not supported in
+     * Internet Explorer 9.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadProgress(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadProgressEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadProgress uploadProgress} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired after the upload has started and before the upload is completed.
+     *
+     * It contains progress information related to the running upload. Depending on file size, band width and
+     * used browser the event is fired once or multiple times.
+     *
+     * This event is only supported with property `sendXHR` set to true, i.e. the event is not supported in
+     * Internet Explorer 9.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadProgress(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadProgressEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadStart uploadStart} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired before an upload is started.
+     *
+     * @since 1.30.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadStart(
+      /**
+       * An application-specific payload object that will be passed to the event handler along with the event
+       * object when firing the event
+       */
+      oData: object,
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadStartEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Attaches event handler `fnFunction` to the {@link #event:uploadStart uploadStart} event of this `sap.ui.commons.FileUploader`.
+     *
+     * When called, the context of the event handler (its `this`) will be bound to `oListener` if specified,
+     * otherwise it will be bound to this `sap.ui.commons.FileUploader` itself.
+     *
+     * Event is fired before an upload is started.
+     *
+     * @since 1.30.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    attachUploadStart(
+      /**
+       * The function to be called when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadStartEvent) => void,
+      /**
+       * Context object to call the event handler with. Defaults to this `sap.ui.commons.FileUploader` itself
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Checks if the chosen file is readable.
+     *
+     *
+     * @returns A promise that resolves successfully if the chosen file can be read and fails with an error
+     * message if it cannot
+     */
+    checkFileReadable(): Promise<any>;
+    /**
+     * Clears the content of the `FileUploader`.
+     *
+     * **Note:** The attached additional data however is retained.
+     *
+     * @since 1.25.0
+     *
+     * @returns Reference to `this` for method chaining
+     */
+    clear(): this;
+    /**
+     * Destroys all the headerParameters in the aggregation {@link #getHeaderParameters headerParameters}.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    destroyHeaderParameters(): this;
+    /**
+     * Destroys all the parameters in the aggregation {@link #getParameters parameters}.
+     *
+     * @since 1.12.2
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    destroyParameters(): this;
+    /**
+     * Destroys the xhrSettings in the aggregation {@link #getXhrSettings xhrSettings}.
+     *
+     * @since 1.52
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    destroyXhrSettings(): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:afterDialogClose afterDialogClose} event of
+     * this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     * @since 1.102.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachAfterDialogClose(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:beforeDialogOpen beforeDialogOpen} event of
+     * this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     * @since 1.102.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachBeforeDialogOpen(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:change change} event of this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachChange(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$ChangeEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:fileAllowed fileAllowed} event of this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachFileAllowed(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: Event) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:fileEmpty fileEmpty} event of this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachFileEmpty(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FileEmptyEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:filenameLengthExceed filenameLengthExceed }
+     * event of this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachFilenameLengthExceed(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FilenameLengthExceedEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:fileSizeExceed fileSizeExceed} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachFileSizeExceed(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$FileSizeExceedEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:typeMissmatch typeMissmatch} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachTypeMissmatch(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$TypeMissmatchEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:uploadAborted uploadAborted} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachUploadAborted(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadAbortedEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:uploadComplete uploadComplete} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachUploadComplete(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadCompleteEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:uploadProgress uploadProgress} event of this
+     * `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachUploadProgress(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadProgressEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Detaches event handler `fnFunction` from the {@link #event:uploadStart uploadStart} event of this `sap.ui.commons.FileUploader`.
+     *
+     * The passed function and listener object must match the ones used for event registration.
+     *
+     * @since 1.30.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    detachUploadStart(
+      /**
+       * The function to be called, when the event occurs
+       */
+      fnFunction: (p1: FileUploader$UploadStartEvent) => void,
+      /**
+       * Context object on which the given function had to be called
+       */
+      oListener?: object
+    ): this;
+    /**
+     * Fires event {@link #event:afterDialogClose afterDialogClose} to attached listeners.
+     *
+     * @since 1.102.0
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireAfterDialogClose(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: object
+    ): this;
+    /**
+     * Fires event {@link #event:beforeDialogOpen beforeDialogOpen} to attached listeners.
+     *
+     * @since 1.102.0
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireBeforeDialogOpen(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: object
+    ): this;
+    /**
+     * Fires event {@link #event:change change} to attached listeners.
+     *
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireChange(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$ChangeEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:fileAllowed fileAllowed} to attached listeners.
+     *
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireFileAllowed(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: object
+    ): this;
+    /**
+     * Fires event {@link #event:fileEmpty fileEmpty} to attached listeners.
+     *
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireFileEmpty(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$FileEmptyEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:filenameLengthExceed filenameLengthExceed} to attached listeners.
+     *
+     * @since 1.24.0
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireFilenameLengthExceed(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$FilenameLengthExceedEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:fileSizeExceed fileSizeExceed} to attached listeners.
+     *
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireFileSizeExceed(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$FileSizeExceedEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:typeMissmatch typeMissmatch} to attached listeners.
+     *
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireTypeMissmatch(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$TypeMissmatchEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:uploadAborted uploadAborted} to attached listeners.
+     *
+     * @since 1.24.0
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireUploadAborted(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$UploadAbortedEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:uploadComplete uploadComplete} to attached listeners.
+     *
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireUploadComplete(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$UploadCompleteEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:uploadProgress uploadProgress} to attached listeners.
+     *
+     * @since 1.24.0
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireUploadProgress(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$UploadProgressEventParameters
+    ): this;
+    /**
+     * Fires event {@link #event:uploadStart uploadStart} to attached listeners.
+     *
+     * @since 1.30.0
+     * @ui5-protected Do not call from applications (only from related classes in the framework)
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    fireUploadStart(
+      /**
+       * Parameters to pass along with the event
+       */
+      mParameters?: FileUploader$UploadStartEventParameters
+    ): this;
+    /**
+     * Gets current value of property {@link #getAdditionalData additionalData}.
+     *
+     * Additional data that is sent to the back end service.
+     *
+     * Data will be transmitted as value of a hidden input where the name is derived from the `name` property
+     * with suffix "-data".
+     *
+     *
+     * @returns Value of property `additionalData`
+     */
+    getAdditionalData(): string;
+    /**
+     * Returns array of IDs of the elements which are the current targets of the association {@link #getAriaDescribedBy ariaDescribedBy}.
+     */
+    getAriaDescribedBy(): ID[];
+    /**
+     * Returns array of IDs of the elements which are the current targets of the association {@link #getAriaLabelledBy ariaLabelledBy}.
+     */
+    getAriaLabelledBy(): ID[];
+    /**
+     * Gets current value of property {@link #getButtonOnly buttonOnly}.
+     *
+     * If set to "true", the `FileUploader` will be rendered as Button only, without showing the input field.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Value of property `buttonOnly`
+     */
+    getButtonOnly(): boolean;
+    /**
+     * Gets current value of property {@link #getButtonText buttonText}.
+     *
+     * The button's text can be overwritten using this property.
+     *
+     *
+     * @returns Value of property `buttonText`
+     */
+    getButtonText(): string;
+    /**
+     * Gets current value of property {@link #getDirectory directory}.
+     *
+     * Allows users to upload all files from a given directory and its corresponding subdirectories.
+     *
+     * Default value is `false`.
+     *
+     * @since 1.105.0
+     *
+     * @returns Value of property `directory`
+     */
+    getDirectory(): boolean;
+    /**
+     * Gets current value of property {@link #getEnabled enabled}.
+     *
+     * Disabled controls have different colors, depending on customer settings.
+     *
+     * Default value is `true`.
+     *
+     *
+     * @returns Value of property `enabled`
+     */
+    getEnabled(): boolean;
+    /**
+     * Gets current value of property {@link #getFileType fileType}.
+     *
+     * The chosen files will be checked against an array of file types.
+     *
+     * If at least one file does not fit the file type restriction, the upload is prevented. **Note:** This
+     * property is not supported by Microsoft Edge.
+     *
+     * Example: `["jpg", "png", "bmp"]`.
+     *
+     *
+     * @returns Value of property `fileType`
+     */
+    getFileType(): string[];
+    /**
+     * Gets content of aggregation {@link #getHeaderParameters headerParameters}.
+     *
+     * The header parameters for the `FileUploader` which are only submitted with XHR requests. Header parameters
+     * are not supported by Internet Explorer 9.
+     */
+    getHeaderParameters(): FileUploaderParameter[];
+    /**
+     * Gets current value of property {@link #getHttpRequestMethod httpRequestMethod}.
+     *
+     * Chosen HTTP request method for file upload.
+     *
+     * Default value is `Post`.
+     *
+     * @since 1.81.0
+     *
+     * @returns Value of property `httpRequestMethod`
+     */
+    getHttpRequestMethod(): FileUploaderHttpRequestMethod;
+    /**
+     * Gets current value of property {@link #getIcon icon}.
+     *
+     * Icon to be displayed as graphical element within the button.
+     *
+     * This can be a URI to an image or an icon font URI.
+     *
+     * Default value is `empty string`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Value of property `icon`
+     */
+    getIcon(): URI;
+    /**
+     * Gets current value of property {@link #getIconFirst iconFirst}.
+     *
+     * If set to true (default), the display sequence is 1. icon 2. control text.
+     *
+     * Default value is `true`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Value of property `iconFirst`
+     */
+    getIconFirst(): boolean;
+    /**
+     * Gets current value of property {@link #getIconHovered iconHovered}.
+     *
+     * Icon to be displayed as graphical element within the button when it is hovered (only if also a base icon
+     * was specified).
+     *
+     * If not specified, the base icon is used. If an icon font icon is used, this property is ignored.
+     *
+     * Default value is `empty string`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Value of property `iconHovered`
+     */
+    getIconHovered(): URI;
+    /**
+     * Gets current value of property {@link #getIconOnly iconOnly}.
+     *
+     * If set to true, the button is displayed without any text.
+     *
+     * Default value is `false`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Value of property `iconOnly`
+     */
+    getIconOnly(): boolean;
+    /**
+     * Gets current value of property {@link #getIconSelected iconSelected}.
+     *
+     * Icon to be displayed as graphical element within the button when it is selected (only if also a base
+     * icon was specified).
+     *
+     * If not specified, the base or hovered icon is used. If an icon font icon is used, this property is ignored.
+     *
+     * Default value is `empty string`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Value of property `iconSelected`
+     */
+    getIconSelected(): URI;
+    /**
+     * Gets current value of property {@link #getMaximumFilenameLength maximumFilenameLength}.
+     *
+     * The maximum length of a filename which the `FileUploader` will accept.
+     *
+     * If the maximum filename length is exceeded, the corresponding event `filenameLengthExceed` is fired.
+     *
+     * @since 1.24.0
+     *
+     * @returns Value of property `maximumFilenameLength`
+     */
+    getMaximumFilenameLength(): int;
+    /**
+     * Gets current value of property {@link #getMaximumFileSize maximumFileSize}.
+     *
+     * A file size limit in megabytes which prevents the upload if at least one file exceeds it.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     *
+     * @returns Value of property `maximumFileSize`
+     */
+    getMaximumFileSize(): float;
+    /**
+     * Gets current value of property {@link #getMimeType mimeType}.
+     *
+     * The chosen files will be checked against an array of MIME types defined in this property.
+     *
+     * If at least one file does not fit the MIME type restriction, the upload is prevented.
+     *
+     * **Note:** This property is not supported by Internet Explorer. It is only reliable for common file types
+     * like images, audio, video, plain text and HTML documents. File types that are not recognized by the browser
+     * result in `file.type` to be returned as an empty string. In this case the verification could not be performed.
+     * The file upload is not prevented and the validation based on file type is left to the receiving backend
+     * side.
+     *
+     * Example: `["image/png", "image/jpeg"]`.
+     *
+     *
+     * @returns Value of property `mimeType`
+     */
+    getMimeType(): string[];
+    /**
+     * Gets current value of property {@link #getMultiple multiple}.
+     *
+     * Allows multiple files to be chosen and uploaded from the same folder.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     * **Note:** Keep in mind that the various operating systems for mobile devices can react differently to
+     * the property so that fewer upload functions may be available in some cases.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Value of property `multiple`
+     */
+    getMultiple(): boolean;
+    /**
+     * Gets current value of property {@link #getName name}.
+     *
+     * Unique control name for identification on the server side after sending data to the server.
+     *
+     *
+     * @returns Value of property `name`
+     */
+    getName(): string;
+    /**
+     * Gets content of aggregation {@link #getParameters parameters}.
+     *
+     * The parameters for the `FileUploader` which are rendered as a hidden input field.
+     *
+     * @since 1.12.2
+     */
+    getParameters(): FileUploaderParameter[];
+    /**
+     * Gets current value of property {@link #getPlaceholder placeholder}.
+     *
+     * Placeholder for the text field.
+     *
+     *
+     * @returns Value of property `placeholder`
+     */
+    getPlaceholder(): string;
+    /**
+     * Allows to process Blobs before they get uploaded. This API can be used to create custom Blobs and upload
+     * these custom Blobs instead of the received/initials Blobs in the parameter `aBlobs`. One use case could
+     * be to create and upload zip archives based on the passed Blobs. The default implementation of this API
+     * should simply resolve with the received Blobs (parameter `aBlobs`).
+     *
+     * This API is only supported in case `sendXHR` is `true`. This means only IE10+ is supported, while IE9
+     * and below is not.
+     *
+     * This is a default implementation of the interface `sap.ui.commons.IProcessableBlobs`.
+     *
+     * @since 1.52
+     *
+     * @returns A Promise that resolves with an array of Blobs which is used for the final uploading.
+     */
+    getProcessedBlobsFromArray(
+      /**
+       * The initial Blobs which can be used to determine/calculate a new array of Blobs for further processing.
+       */
+      aBlobs: Blob[]
+    ): Promise<Blob[]>;
+    /**
+     * Gets current value of property {@link #getSameFilenameAllowed sameFilenameAllowed}.
+     *
+     * If the FileUploader is configured to upload the file directly after the file is selected, it is not allowed
+     * to upload a file with the same name again. If a user should be allowed to upload a file with the same
+     * name again this parameter has to be "true".
+     *
+     * A typical use case would be if the files have different paths.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Value of property `sameFilenameAllowed`
+     */
+    getSameFilenameAllowed(): boolean;
+    /**
+     * Gets current value of property {@link #getSendXHR sendXHR}.
+     *
+     * If set to "true", the request will be sent as XHR request instead of a form submit.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Value of property `sendXHR`
+     */
+    getSendXHR(): boolean;
+    /**
+     * Gets current value of property {@link #getStyle style}.
+     *
+     * Style of the button.
+     *
+     * Values "Transparent, "Accept", "Reject", or "Emphasized" are allowed.
+     *
+     *
+     * @returns Value of property `style`
+     */
+    getStyle(): string;
+    /**
+     * Gets current value of property {@link #getUploadOnChange uploadOnChange}.
+     *
+     * If set to "true", the upload immediately starts after file selection. With the default setting, the upload
+     * needs to be explicitly triggered.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Value of property `uploadOnChange`
+     */
+    getUploadOnChange(): boolean;
+    /**
+     * Gets current value of property {@link #getUploadUrl uploadUrl}.
+     *
+     * Used when URL address is on a remote server.
+     *
+     * Default value is `empty string`.
+     *
+     *
+     * @returns Value of property `uploadUrl`
+     */
+    getUploadUrl(): URI;
+    /**
+     * Gets current value of property {@link #getUseMultipart useMultipart}.
+     *
+     * If set to "false", the request will be sent as file only request instead of a multipart/form-data request.
+     *
+     * Only one file could be uploaded using this type of request. Required for sending such a request is to
+     * set the property `sendXHR` to "true". This property is not supported by Internet Explorer 9.
+     *
+     * Default value is `true`.
+     *
+     *
+     * @returns Value of property `useMultipart`
+     */
+    getUseMultipart(): boolean;
+    /**
+     * Gets current value of property {@link #getValue value}.
+     *
+     * Value of the path for file upload.
+     *
+     * Default value is `empty string`.
+     *
+     *
+     * @returns Value of property `value`
+     */
+    getValue(): string;
+    /**
+     * Gets current value of property {@link #getValueState valueState}.
+     *
+     * Visualizes warnings or errors related to the text field.
+     *
+     * Possible values: Warning, Error, Success, None.
+     *
+     * Default value is `None`.
+     *
+     * @since 1.24.0
+     *
+     * @returns Value of property `valueState`
+     */
+    getValueState(): ValueState;
+    /**
+     * Gets current value of property {@link #getValueStateText valueStateText}.
+     *
+     * Custom text for the value state message pop-up.
+     *
+     * **Note:** If not specified, a default text, based on the value state type, will be used instead.
+     *
+     * @since 1.52
+     *
+     * @returns Value of property `valueStateText`
+     */
+    getValueStateText(): string;
+    /**
+     * Gets current value of property {@link #getWidth width}.
+     *
+     * Specifies the displayed control width.
+     *
+     * Default value is `empty string`.
+     *
+     *
+     * @returns Value of property `width`
+     */
+    getWidth(): CSSSize;
+    /**
+     * Gets content of aggregation {@link #getXhrSettings xhrSettings}.
+     *
+     * Settings for the `XMLHttpRequest` object. **Note:** This aggregation is only used when the `sendXHR`
+     * property is set to `true`.
+     *
+     * @since 1.52
+     */
+    getXhrSettings(): FileUploaderXHRSettings;
+    /**
+     * Checks for the provided `sap.ui.commons.FileUploaderParameter` in the aggregation {@link #getHeaderParameters headerParameters}.
+     * and returns its index if found or -1 otherwise.
+     *
+     *
+     * @returns The index of the provided control in the aggregation if found, or -1 otherwise
+     */
+    indexOfHeaderParameter(
+      /**
+       * The headerParameter whose index is looked for
+       */
+      oHeaderParameter: FileUploaderParameter
+    ): int;
+    /**
+     * Checks for the provided `sap.ui.commons.FileUploaderParameter` in the aggregation {@link #getParameters parameters}.
+     * and returns its index if found or -1 otherwise.
+     *
+     * @since 1.12.2
+     *
+     * @returns The index of the provided control in the aggregation if found, or -1 otherwise
+     */
+    indexOfParameter(
+      /**
+       * The parameter whose index is looked for
+       */
+      oParameter: FileUploaderParameter
+    ): int;
+    /**
+     * Inserts a headerParameter into the aggregation {@link #getHeaderParameters headerParameters}.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    insertHeaderParameter(
+      /**
+       * The headerParameter to insert; if empty, nothing is inserted
+       */
+      oHeaderParameter: FileUploaderParameter,
+      /**
+       * The `0`-based index the headerParameter should be inserted at; for a negative value of `iIndex`, the
+       * headerParameter is inserted at position 0; for a value greater than the current size of the aggregation,
+       * the headerParameter is inserted at the last position
+       */
+      iIndex: int
+    ): this;
+    /**
+     * Inserts a parameter into the aggregation {@link #getParameters parameters}.
+     *
+     * @since 1.12.2
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    insertParameter(
+      /**
+       * The parameter to insert; if empty, nothing is inserted
+       */
+      oParameter: FileUploaderParameter,
+      /**
+       * The `0`-based index the parameter should be inserted at; for a negative value of `iIndex`, the parameter
+       * is inserted at position 0; for a value greater than the current size of the aggregation, the parameter
+       * is inserted at the last position
+       */
+      iIndex: int
+    ): this;
+    /**
+     * Removes all the controls in the association named {@link #getAriaDescribedBy ariaDescribedBy}.
+     *
+     *
+     * @returns An array of the removed elements (might be empty)
+     */
+    removeAllAriaDescribedBy(): ID[];
+    /**
+     * Removes all the controls in the association named {@link #getAriaLabelledBy ariaLabelledBy}.
+     *
+     *
+     * @returns An array of the removed elements (might be empty)
+     */
+    removeAllAriaLabelledBy(): ID[];
+    /**
+     * Removes all the controls from the aggregation {@link #getHeaderParameters headerParameters}.
+     *
+     * Additionally, it unregisters them from the hosting UIArea.
+     *
+     *
+     * @returns An array of the removed elements (might be empty)
+     */
+    removeAllHeaderParameters(): FileUploaderParameter[];
+    /**
+     * Removes all the controls from the aggregation {@link #getParameters parameters}.
+     *
+     * Additionally, it unregisters them from the hosting UIArea.
+     *
+     * @since 1.12.2
+     *
+     * @returns An array of the removed elements (might be empty)
+     */
+    removeAllParameters(): FileUploaderParameter[];
+    /**
+     * Removes an ariaDescribedBy from the association named {@link #getAriaDescribedBy ariaDescribedBy}.
+     *
+     *
+     * @returns The removed ariaDescribedBy or `null`
+     */
+    removeAriaDescribedBy(
+      /**
+       * The ariaDescribedBy to be removed or its index or ID
+       */
+      vAriaDescribedBy: int | ID | Control
+    ): ID | null;
+    /**
+     * Removes an ariaLabelledBy from the association named {@link #getAriaLabelledBy ariaLabelledBy}.
+     *
+     *
+     * @returns The removed ariaLabelledBy or `null`
+     */
+    removeAriaLabelledBy(
+      /**
+       * The ariaLabelledBy to be removed or its index or ID
+       */
+      vAriaLabelledBy: int | ID | Control
+    ): ID | null;
+    /**
+     * Removes a headerParameter from the aggregation {@link #getHeaderParameters headerParameters}.
+     *
+     *
+     * @returns The removed headerParameter or `null`
+     */
+    removeHeaderParameter(
+      /**
+       * The headerParameter to remove or its index or id
+       */
+      vHeaderParameter: int | string | FileUploaderParameter
+    ): FileUploaderParameter | null;
+    /**
+     * Removes a parameter from the aggregation {@link #getParameters parameters}.
+     *
+     * @since 1.12.2
+     *
+     * @returns The removed parameter or `null`
+     */
+    removeParameter(
+      /**
+       * The parameter to remove or its index or id
+       */
+      vParameter: int | string | FileUploaderParameter
+    ): FileUploaderParameter | null;
+    /**
+     * Sets a new value for property {@link #getAdditionalData additionalData}.
+     *
+     * Additional data that is sent to the back end service.
+     *
+     * Data will be transmitted as value of a hidden input where the name is derived from the `name` property
+     * with suffix "-data".
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setAdditionalData(
+      /**
+       * New value for property `additionalData`
+       */
+      sAdditionalData?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getButtonOnly buttonOnly}.
+     *
+     * If set to "true", the `FileUploader` will be rendered as Button only, without showing the input field.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setButtonOnly(
+      /**
+       * New value for property `buttonOnly`
+       */
+      bButtonOnly?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getButtonText buttonText}.
+     *
+     * The button's text can be overwritten using this property.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setButtonText(
+      /**
+       * New value for property `buttonText`
+       */
+      sButtonText?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getDirectory directory}.
+     *
+     * Allows users to upload all files from a given directory and its corresponding subdirectories.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     * @since 1.105.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setDirectory(
+      /**
+       * New value for property `directory`
+       */
+      bDirectory?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getEnabled enabled}.
+     *
+     * Disabled controls have different colors, depending on customer settings.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `true`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setEnabled(
+      /**
+       * New value for property `enabled`
+       */
+      bEnabled?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getFileType fileType}.
+     *
+     * The chosen files will be checked against an array of file types.
+     *
+     * If at least one file does not fit the file type restriction, the upload is prevented. **Note:** This
+     * property is not supported by Microsoft Edge.
+     *
+     * Example: `["jpg", "png", "bmp"]`.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setFileType(
+      /**
+       * New value for property `fileType`
+       */
+      sFileType?: string[]
+    ): this;
+    /**
+     * Sets a new value for property {@link #getHttpRequestMethod httpRequestMethod}.
+     *
+     * Chosen HTTP request method for file upload.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `Post`.
+     *
+     * @since 1.81.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setHttpRequestMethod(
+      /**
+       * New value for property `httpRequestMethod`
+       */
+      sHttpRequestMethod?: FileUploaderHttpRequestMethod
+    ): this;
+    /**
+     * Sets a new value for property {@link #getIcon icon}.
+     *
+     * Icon to be displayed as graphical element within the button.
+     *
+     * This can be a URI to an image or an icon font URI.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `empty string`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setIcon(
+      /**
+       * New value for property `icon`
+       */
+      sIcon?: URI
+    ): this;
+    /**
+     * Sets a new value for property {@link #getIconFirst iconFirst}.
+     *
+     * If set to true (default), the display sequence is 1. icon 2. control text.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `true`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setIconFirst(
+      /**
+       * New value for property `iconFirst`
+       */
+      bIconFirst?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getIconHovered iconHovered}.
+     *
+     * Icon to be displayed as graphical element within the button when it is hovered (only if also a base icon
+     * was specified).
+     *
+     * If not specified, the base icon is used. If an icon font icon is used, this property is ignored.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `empty string`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setIconHovered(
+      /**
+       * New value for property `iconHovered`
+       */
+      sIconHovered?: URI
+    ): this;
+    /**
+     * Sets a new value for property {@link #getIconOnly iconOnly}.
+     *
+     * If set to true, the button is displayed without any text.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setIconOnly(
+      /**
+       * New value for property `iconOnly`
+       */
+      bIconOnly?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getIconSelected iconSelected}.
+     *
+     * Icon to be displayed as graphical element within the button when it is selected (only if also a base
+     * icon was specified).
+     *
+     * If not specified, the base or hovered icon is used. If an icon font icon is used, this property is ignored.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `empty string`.
+     *
+     * @since 1.26.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setIconSelected(
+      /**
+       * New value for property `iconSelected`
+       */
+      sIconSelected?: URI
+    ): this;
+    /**
+     * Sets a new value for property {@link #getMaximumFilenameLength maximumFilenameLength}.
+     *
+     * The maximum length of a filename which the `FileUploader` will accept.
+     *
+     * If the maximum filename length is exceeded, the corresponding event `filenameLengthExceed` is fired.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setMaximumFilenameLength(
+      /**
+       * New value for property `maximumFilenameLength`
+       */
+      iMaximumFilenameLength?: int
+    ): this;
+    /**
+     * Sets a new value for property {@link #getMaximumFileSize maximumFileSize}.
+     *
+     * A file size limit in megabytes which prevents the upload if at least one file exceeds it.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setMaximumFileSize(
+      /**
+       * New value for property `maximumFileSize`
+       */
+      fMaximumFileSize?: float
+    ): this;
+    /**
+     * Sets a new value for property {@link #getMimeType mimeType}.
+     *
+     * The chosen files will be checked against an array of MIME types defined in this property.
+     *
+     * If at least one file does not fit the MIME type restriction, the upload is prevented.
+     *
+     * **Note:** This property is not supported by Internet Explorer. It is only reliable for common file types
+     * like images, audio, video, plain text and HTML documents. File types that are not recognized by the browser
+     * result in `file.type` to be returned as an empty string. In this case the verification could not be performed.
+     * The file upload is not prevented and the validation based on file type is left to the receiving backend
+     * side.
+     *
+     * Example: `["image/png", "image/jpeg"]`.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setMimeType(
+      /**
+       * New value for property `mimeType`
+       */
+      sMimeType?: string[]
+    ): this;
+    /**
+     * Sets a new value for property {@link #getMultiple multiple}.
+     *
+     * Allows multiple files to be chosen and uploaded from the same folder.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     * **Note:** Keep in mind that the various operating systems for mobile devices can react differently to
+     * the property so that fewer upload functions may be available in some cases.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setMultiple(
+      /**
+       * New value for property `multiple`
+       */
+      bMultiple?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getName name}.
+     *
+     * Unique control name for identification on the server side after sending data to the server.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setName(
+      /**
+       * New value for property `name`
+       */
+      sName?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getPlaceholder placeholder}.
+     *
+     * Placeholder for the text field.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setPlaceholder(
+      /**
+       * New value for property `placeholder`
+       */
+      sPlaceholder?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getSameFilenameAllowed sameFilenameAllowed}.
+     *
+     * If the FileUploader is configured to upload the file directly after the file is selected, it is not allowed
+     * to upload a file with the same name again. If a user should be allowed to upload a file with the same
+     * name again this parameter has to be "true".
+     *
+     * A typical use case would be if the files have different paths.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setSameFilenameAllowed(
+      /**
+       * New value for property `sameFilenameAllowed`
+       */
+      bSameFilenameAllowed?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getSendXHR sendXHR}.
+     *
+     * If set to "true", the request will be sent as XHR request instead of a form submit.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setSendXHR(
+      /**
+       * New value for property `sendXHR`
+       */
+      bSendXHR?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getStyle style}.
+     *
+     * Style of the button.
+     *
+     * Values "Transparent, "Accept", "Reject", or "Emphasized" are allowed.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setStyle(
+      /**
+       * New value for property `style`
+       */
+      sStyle?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getUploadOnChange uploadOnChange}.
+     *
+     * If set to "true", the upload immediately starts after file selection. With the default setting, the upload
+     * needs to be explicitly triggered.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setUploadOnChange(
+      /**
+       * New value for property `uploadOnChange`
+       */
+      bUploadOnChange?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getUploadUrl uploadUrl}.
+     *
+     * Used when URL address is on a remote server.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `empty string`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setUploadUrl(
+      /**
+       * New value for property `uploadUrl`
+       */
+      sUploadUrl?: URI
+    ): this;
+    /**
+     * Sets a new value for property {@link #getUseMultipart useMultipart}.
+     *
+     * If set to "false", the request will be sent as file only request instead of a multipart/form-data request.
+     *
+     * Only one file could be uploaded using this type of request. Required for sending such a request is to
+     * set the property `sendXHR` to "true". This property is not supported by Internet Explorer 9.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `true`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setUseMultipart(
+      /**
+       * New value for property `useMultipart`
+       */
+      bUseMultipart?: boolean
+    ): this;
+    /**
+     * Sets a new value for property {@link #getValue value}.
+     *
+     * Value of the path for file upload.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `empty string`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setValue(
+      /**
+       * New value for property `value`
+       */
+      sValue?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getValueState valueState}.
+     *
+     * Visualizes warnings or errors related to the text field.
+     *
+     * Possible values: Warning, Error, Success, None.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `None`.
+     *
+     * @since 1.24.0
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setValueState(
+      /**
+       * New value for property `valueState`
+       */
+      sValueState?: ValueState | keyof typeof ValueState
+    ): this;
+    /**
+     * Sets a new value for property {@link #getValueStateText valueStateText}.
+     *
+     * Custom text for the value state message pop-up.
+     *
+     * **Note:** If not specified, a default text, based on the value state type, will be used instead.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * @since 1.52
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setValueStateText(
+      /**
+       * New value for property `valueStateText`
+       */
+      sValueStateText?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getWidth width}.
+     *
+     * Specifies the displayed control width.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `empty string`.
+     *
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setWidth(
+      /**
+       * New value for property `width`
+       */
+      sWidth?: CSSSize
+    ): this;
+    /**
+     * Sets the aggregated {@link #getXhrSettings xhrSettings}.
+     *
+     * @since 1.52
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setXhrSettings(
+      /**
+       * The xhrSettings to set
+       */
+      oXhrSettings: FileUploaderXHRSettings
+    ): this;
+    /**
+     * Starts the upload (as defined by uploadUrl).
+     */
+    upload(
+      /**
+       * Set to `true` to allow pre-processing of the files before sending the request. As a result, the `upload`
+       * method becomes asynchronous. See {@link sap.ui.commons.IProcessableBlobs} for more information. **Note:**
+       * This parameter is only taken into account when `sendXHR` is set to `true`.
+       */
+      bPreProcessFiles?: boolean
+    ): void;
   }
   /**
    * Describes the settings that can be provided to the FileUploader constructor.
    *
-   * @deprecated (since 1.21.0) - Please use the control sap.ui.unified.FileUploader of the library sap.ui.unified
+   * @deprecated As of version 1.21.0. Please use the control sap.ui.unified.FileUploader of the library sap.ui.unified
    * instead.
    */
-  export interface $FileUploaderSettings extends $FileUploaderSettings1 {}
+  export interface $FileUploaderSettings extends $ControlSettings {
+    /**
+     * Value of the path for file upload.
+     */
+    value?: string | PropertyBindingInfo;
+
+    /**
+     * Disabled controls have different colors, depending on customer settings.
+     */
+    enabled?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Used when URL address is on a remote server.
+     */
+    uploadUrl?: URI | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Unique control name for identification on the server side after sending data to the server.
+     */
+    name?: string | PropertyBindingInfo;
+
+    /**
+     * Specifies the displayed control width.
+     */
+    width?: CSSSize | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * If set to "true", the upload immediately starts after file selection. With the default setting, the upload
+     * needs to be explicitly triggered.
+     */
+    uploadOnChange?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Additional data that is sent to the back end service.
+     *
+     * Data will be transmitted as value of a hidden input where the name is derived from the `name` property
+     * with suffix "-data".
+     */
+    additionalData?: string | PropertyBindingInfo;
+
+    /**
+     * If the FileUploader is configured to upload the file directly after the file is selected, it is not allowed
+     * to upload a file with the same name again. If a user should be allowed to upload a file with the same
+     * name again this parameter has to be "true".
+     *
+     * A typical use case would be if the files have different paths.
+     */
+    sameFilenameAllowed?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * The button's text can be overwritten using this property.
+     */
+    buttonText?: string | PropertyBindingInfo;
+
+    /**
+     * The chosen files will be checked against an array of file types.
+     *
+     * If at least one file does not fit the file type restriction, the upload is prevented. **Note:** This
+     * property is not supported by Microsoft Edge.
+     *
+     * Example: `["jpg", "png", "bmp"]`.
+     */
+    fileType?: string[] | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Allows multiple files to be chosen and uploaded from the same folder.
+     *
+     * This property is not supported by Internet Explorer 9.
+     *
+     * **Note:** Keep in mind that the various operating systems for mobile devices can react differently to
+     * the property so that fewer upload functions may be available in some cases.
+     */
+    multiple?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * A file size limit in megabytes which prevents the upload if at least one file exceeds it.
+     *
+     * This property is not supported by Internet Explorer 9.
+     */
+    maximumFileSize?: float | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * The chosen files will be checked against an array of MIME types defined in this property.
+     *
+     * If at least one file does not fit the MIME type restriction, the upload is prevented.
+     *
+     * **Note:** This property is not supported by Internet Explorer. It is only reliable for common file types
+     * like images, audio, video, plain text and HTML documents. File types that are not recognized by the browser
+     * result in `file.type` to be returned as an empty string. In this case the verification could not be performed.
+     * The file upload is not prevented and the validation based on file type is left to the receiving backend
+     * side.
+     *
+     * Example: `["image/png", "image/jpeg"]`.
+     */
+    mimeType?: string[] | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * If set to "true", the request will be sent as XHR request instead of a form submit.
+     *
+     * This property is not supported by Internet Explorer 9.
+     */
+    sendXHR?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Chosen HTTP request method for file upload.
+     *
+     * @since 1.81.0
+     */
+    httpRequestMethod?:
+      | FileUploaderHttpRequestMethod
+      | PropertyBindingInfo
+      | `{${string}}`;
+
+    /**
+     * Placeholder for the text field.
+     */
+    placeholder?: string | PropertyBindingInfo;
+
+    /**
+     * Style of the button.
+     *
+     * Values "Transparent, "Accept", "Reject", or "Emphasized" are allowed.
+     */
+    style?: string | PropertyBindingInfo;
+
+    /**
+     * If set to "true", the `FileUploader` will be rendered as Button only, without showing the input field.
+     */
+    buttonOnly?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * If set to "false", the request will be sent as file only request instead of a multipart/form-data request.
+     *
+     * Only one file could be uploaded using this type of request. Required for sending such a request is to
+     * set the property `sendXHR` to "true". This property is not supported by Internet Explorer 9.
+     */
+    useMultipart?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * The maximum length of a filename which the `FileUploader` will accept.
+     *
+     * If the maximum filename length is exceeded, the corresponding event `filenameLengthExceed` is fired.
+     *
+     * @since 1.24.0
+     */
+    maximumFilenameLength?: int | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Visualizes warnings or errors related to the text field.
+     *
+     * Possible values: Warning, Error, Success, None.
+     *
+     * @since 1.24.0
+     */
+    valueState?:
+      | (ValueState | keyof typeof ValueState)
+      | PropertyBindingInfo
+      | `{${string}}`;
+
+    /**
+     * Custom text for the value state message pop-up.
+     *
+     * **Note:** If not specified, a default text, based on the value state type, will be used instead.
+     *
+     * @since 1.52
+     */
+    valueStateText?: string | PropertyBindingInfo;
+
+    /**
+     * Icon to be displayed as graphical element within the button.
+     *
+     * This can be a URI to an image or an icon font URI.
+     *
+     * @since 1.26.0
+     */
+    icon?: URI | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Icon to be displayed as graphical element within the button when it is hovered (only if also a base icon
+     * was specified).
+     *
+     * If not specified, the base icon is used. If an icon font icon is used, this property is ignored.
+     *
+     * @since 1.26.0
+     */
+    iconHovered?: URI | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Icon to be displayed as graphical element within the button when it is selected (only if also a base
+     * icon was specified).
+     *
+     * If not specified, the base or hovered icon is used. If an icon font icon is used, this property is ignored.
+     *
+     * @since 1.26.0
+     */
+    iconSelected?: URI | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * If set to true (default), the display sequence is 1. icon 2. control text.
+     *
+     * @since 1.26.0
+     */
+    iconFirst?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * If set to true, the button is displayed without any text.
+     *
+     * @since 1.26.0
+     */
+    iconOnly?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * Allows users to upload all files from a given directory and its corresponding subdirectories.
+     *
+     * @since 1.105.0
+     */
+    directory?: boolean | PropertyBindingInfo | `{${string}}`;
+
+    /**
+     * The parameters for the `FileUploader` which are rendered as a hidden input field.
+     *
+     * @since 1.12.2
+     */
+    parameters?:
+      | FileUploaderParameter[]
+      | FileUploaderParameter
+      | AggregationBindingInfo
+      | `{${string}}`;
+
+    /**
+     * The header parameters for the `FileUploader` which are only submitted with XHR requests. Header parameters
+     * are not supported by Internet Explorer 9.
+     */
+    headerParameters?:
+      | FileUploaderParameter[]
+      | FileUploaderParameter
+      | AggregationBindingInfo
+      | `{${string}}`;
+
+    /**
+     * Settings for the `XMLHttpRequest` object. **Note:** This aggregation is only used when the `sendXHR`
+     * property is set to `true`.
+     *
+     * @since 1.52
+     */
+    xhrSettings?: FileUploaderXHRSettings;
+
+    /**
+     * Association to controls / IDs which describe this control (see WAI-ARIA attribute `aria-describedby`).
+     */
+    ariaDescribedBy?: Array<Control | string>;
+
+    /**
+     * Association to controls / IDs which label this control (see WAI-ARIA attribute `aria-labelledby`).
+     */
+    ariaLabelledBy?: Array<Control | string>;
+
+    /**
+     * Event is fired when the value of the file path has been changed.
+     *
+     * **Note:** Keep in mind that because of the HTML input element of type file, the event is also fired in
+     * Chrome browser when the Cancel button of the uploads window is pressed.
+     */
+    change?: (oEvent: FileUploader$ChangeEvent) => void;
+
+    /**
+     * Event is fired as soon as the upload request is completed (either successful or unsuccessful).
+     *
+     * To see if the upload request was successful, check the `status` parameter for a value 2xx. The actual
+     * progress of the upload can be monitored by listening to the `uploadProgress` event. However, this covers
+     * only the client side of the upload process and does not give any success status from the server.
+     */
+    uploadComplete?: (oEvent: FileUploader$UploadCompleteEvent) => void;
+
+    /**
+     * Event is fired when the type of a file does not match the `mimeType` or `fileType` property.
+     */
+    typeMissmatch?: (oEvent: FileUploader$TypeMissmatchEvent) => void;
+
+    /**
+     * Event is fired when the size of a file is above the `maximumFileSize` property. This event is not supported
+     * by Internet Explorer 9 (same restriction as for the property `maximumFileSize`).
+     */
+    fileSizeExceed?: (oEvent: FileUploader$FileSizeExceedEvent) => void;
+
+    /**
+     * Event is fired when the size of the file is 0
+     */
+    fileEmpty?: (oEvent: FileUploader$FileEmptyEvent) => void;
+
+    /**
+     * Event is fired when the file is allowed for upload on client side.
+     */
+    fileAllowed?: (oEvent: Event) => void;
+
+    /**
+     * Event is fired after the upload has started and before the upload is completed.
+     *
+     * It contains progress information related to the running upload. Depending on file size, band width and
+     * used browser the event is fired once or multiple times.
+     *
+     * This event is only supported with property `sendXHR` set to true, i.e. the event is not supported in
+     * Internet Explorer 9.
+     *
+     * @since 1.24.0
+     */
+    uploadProgress?: (oEvent: FileUploader$UploadProgressEvent) => void;
+
+    /**
+     * Event is fired after the current upload has been aborted.
+     *
+     * This event is only supported with property `sendXHR` set to true, i.e. the event is not supported in
+     * Internet Explorer 9.
+     *
+     * @since 1.24.0
+     */
+    uploadAborted?: (oEvent: FileUploader$UploadAbortedEvent) => void;
+
+    /**
+     * Event is fired, if the filename of a chosen file is longer than the value specified with the `maximumFilenameLength`
+     * property.
+     *
+     * @since 1.24.0
+     */
+    filenameLengthExceed?: (
+      oEvent: FileUploader$FilenameLengthExceedEvent
+    ) => void;
+
+    /**
+     * Event is fired before an upload is started.
+     *
+     * @since 1.30.0
+     */
+    uploadStart?: (oEvent: FileUploader$UploadStartEvent) => void;
+
+    /**
+     * Fired before select file dialog opens.
+     *
+     * @since 1.102.0
+     */
+    beforeDialogOpen?: (oEvent: Event) => void;
+
+    /**
+     * Fired after select file dialog closes.
+     *
+     * @since 1.102.0
+     */
+    afterDialogClose?: (oEvent: Event) => void;
+  }
+
+  /**
+   * Parameters of the FileUploader#afterDialogClose event.
+   */
+  export interface FileUploader$AfterDialogCloseEventParameters {}
+
+  /**
+   * Event object of the FileUploader#afterDialogClose event.
+   */
+  export type FileUploader$AfterDialogCloseEvent = Event<
+    FileUploader$AfterDialogCloseEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#beforeDialogOpen event.
+   */
+  export interface FileUploader$BeforeDialogOpenEventParameters {}
+
+  /**
+   * Event object of the FileUploader#beforeDialogOpen event.
+   */
+  export type FileUploader$BeforeDialogOpenEvent = Event<
+    FileUploader$BeforeDialogOpenEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#change event.
+   */
+  export interface FileUploader$ChangeEventParameters {
+    /**
+     * New file path value.
+     */
+    newValue?: string;
+
+    /**
+     * Files.
+     */
+    files?: object[];
+  }
+
+  /**
+   * Event object of the FileUploader#change event.
+   */
+  export type FileUploader$ChangeEvent = Event<
+    FileUploader$ChangeEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#fileAllowed event.
+   */
+  export interface FileUploader$FileAllowedEventParameters {}
+
+  /**
+   * Event object of the FileUploader#fileAllowed event.
+   */
+  export type FileUploader$FileAllowedEvent = Event<
+    FileUploader$FileAllowedEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#fileEmpty event.
+   */
+  export interface FileUploader$FileEmptyEventParameters {
+    /**
+     * The name of the file to be uploaded.
+     */
+    fileName?: string;
+  }
+
+  /**
+   * Event object of the FileUploader#fileEmpty event.
+   */
+  export type FileUploader$FileEmptyEvent = Event<
+    FileUploader$FileEmptyEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#filenameLengthExceed event.
+   */
+  export interface FileUploader$FilenameLengthExceedEventParameters {
+    /**
+     * The filename, which is longer than specified by the value of the property `maximumFilenameLength`.
+     */
+    fileName?: string;
+  }
+
+  /**
+   * Event object of the FileUploader#filenameLengthExceed event.
+   */
+  export type FileUploader$FilenameLengthExceedEvent = Event<
+    FileUploader$FilenameLengthExceedEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#fileSizeExceed event.
+   */
+  export interface FileUploader$FileSizeExceedEventParameters {
+    /**
+     * The name of a file to be uploaded.
+     */
+    fileName?: string;
+
+    /**
+     * The size in MB of a file to be uploaded.
+     */
+    fileSize?: string;
+  }
+
+  /**
+   * Event object of the FileUploader#fileSizeExceed event.
+   */
+  export type FileUploader$FileSizeExceedEvent = Event<
+    FileUploader$FileSizeExceedEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#typeMissmatch event.
+   */
+  export interface FileUploader$TypeMissmatchEventParameters {
+    /**
+     * The name of a file to be uploaded.
+     */
+    fileName?: string;
+
+    /**
+     * The file ending of a file to be uploaded.
+     */
+    fileType?: string;
+
+    /**
+     * The MIME type of a file to be uploaded.
+     */
+    mimeType?: string;
+  }
+
+  /**
+   * Event object of the FileUploader#typeMissmatch event.
+   */
+  export type FileUploader$TypeMissmatchEvent = Event<
+    FileUploader$TypeMissmatchEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#uploadAborted event.
+   */
+  export interface FileUploader$UploadAbortedEventParameters {
+    /**
+     * The name of a file to be uploaded.
+     */
+    fileName?: string;
+
+    /**
+     * Http-Request-Headers.
+     *
+     * Required for receiving `requestHeader` is to set the property `sendXHR` to true. This property is not
+     * supported by Internet Explorer 9.
+     */
+    requestHeaders?: object[];
+  }
+
+  /**
+   * Event object of the FileUploader#uploadAborted event.
+   */
+  export type FileUploader$UploadAbortedEvent = Event<
+    FileUploader$UploadAbortedEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#uploadComplete event.
+   */
+  export interface FileUploader$UploadCompleteEventParameters {
+    /**
+     * The name of a file to be uploaded.
+     */
+    fileName?: string;
+
+    /**
+     * Response message which comes from the server.
+     *
+     * On the server side this response has to be put within the "body" tags of the response document
+     * of the iFrame. It can consist of a return code and an optional message. This does not work in cross-domain
+     * scenarios.
+     */
+    response?: string;
+
+    /**
+     * ReadyState of the XHR request.
+     *
+     * Required for receiving a `readyStateXHR` is to set the property `sendXHR` to true. This property is not
+     * supported by Internet Explorer 9.
+     */
+    readyStateXHR?: string;
+
+    /**
+     * Status of the XHR request.
+     *
+     * Required for receiving a `status` is to set the property `sendXHR` to true. This property is not supported
+     * by Internet Explorer 9.
+     */
+    status?: int;
+
+    /**
+     * Http-Response which comes from the server.
+     *
+     * Required for receiving `responseRaw` is to set the property `sendXHR` to true.
+     *
+     * This property is not supported by Internet Explorer 9.
+     */
+    responseRaw?: string;
+
+    /**
+     * Http-Response-Headers which come from the server.
+     *
+     * Provided as a JSON-map, i.e. each header-field is reflected by a property in the `headers` object, with
+     * the property value reflecting the header-field's content.
+     *
+     * Required for receiving `headers` is to set the property `sendXHR` to true. This property is not supported
+     * by Internet Explorer 9.
+     */
+    headers?: object;
+
+    /**
+     * Http-Request-Headers.
+     *
+     * Required for receiving `requestHeaders` is to set the property `sendXHR` to true. This property is not
+     * supported by Internet Explorer 9.
+     */
+    requestHeaders?: object[];
+  }
+
+  /**
+   * Event object of the FileUploader#uploadComplete event.
+   */
+  export type FileUploader$UploadCompleteEvent = Event<
+    FileUploader$UploadCompleteEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#uploadProgress event.
+   */
+  export interface FileUploader$UploadProgressEventParameters {
+    /**
+     * Indicates whether or not the relative upload progress can be calculated out of loaded and total.
+     */
+    lengthComputable?: boolean;
+
+    /**
+     * The number of bytes of the file which have been uploaded by the time the event was fired.
+     */
+    loaded?: float;
+
+    /**
+     * The total size of the file to be uploaded in bytes.
+     */
+    total?: float;
+
+    /**
+     * The name of a file to be uploaded.
+     */
+    fileName?: string;
+
+    /**
+     * Http-Request-Headers.
+     *
+     * Required for receiving `requestHeaders` is to set the property `sendXHR` to true. This property is not
+     * supported by Internet Explorer 9.
+     */
+    requestHeaders?: object[];
+  }
+
+  /**
+   * Event object of the FileUploader#uploadProgress event.
+   */
+  export type FileUploader$UploadProgressEvent = Event<
+    FileUploader$UploadProgressEventParameters,
+    FileUploader
+  >;
+
+  /**
+   * Parameters of the FileUploader#uploadStart event.
+   */
+  export interface FileUploader$UploadStartEventParameters {
+    /**
+     * The name of a file to be uploaded.
+     */
+    fileName?: string;
+
+    /**
+     * Http-Request-Headers.
+     *
+     * Required for receiving `requestHeaders` is to set the property `sendXHR` to true. This property is not
+     * supported by Internet Explorer 9.
+     */
+    requestHeaders?: object[];
+  }
+
+  /**
+   * Event object of the FileUploader#uploadStart event.
+   */
+  export type FileUploader$UploadStartEvent = Event<
+    FileUploader$UploadStartEventParameters,
+    FileUploader
+  >;
+}
+
+declare module "sap/ui/commons/FileUploaderHttpRequestMethod" {
+  /**
+   * Types of HTTP request methods.
+   *
+   * @since 1.144.0
+   * @deprecated As of version 1.144.0. Please use the control sap.ui.unified.FileUploaderHttpRequestMethod
+   * of the library sap.ui.unified instead.
+   */
+  enum FileUploaderHttpRequestMethod {
+    /**
+     * HTTP request POST method.
+     */
+    Post = "POST",
+    /**
+     * HTTP request PUT method.
+     */
+    Put = "PUT",
+  }
+  export default FileUploaderHttpRequestMethod;
 }
 
 declare module "sap/ui/commons/FileUploaderParameter" {
-  import {
-    default as FileUploaderParameter1,
-    $FileUploaderParameterSettings as $FileUploaderParameterSettings1,
-  } from "sap/ui/unified/FileUploaderParameter";
+  import { default as UI5Element, $ElementSettings } from "sap/ui/core/Element";
 
   import ElementMetadata from "sap/ui/core/ElementMetadata";
+
+  import { PropertyBindingInfo } from "sap/ui/base/ManagedObject";
 
   /**
    * Represents a parameter for the FileUploader which is rendered as a hidden inputfield.
    *
-   * @deprecated (since 1.21.0) - Please use the element sap.ui.unified.FileUploaderParameter of the library
-   * sap.ui.unified instead.
+   * @deprecated As of version 1.21.0. Please use the control sap.ui.unified.FileUploaderParameter of the
+   * library sap.ui.unified instead.
    */
-  export default class FileUploaderParameter extends FileUploaderParameter1 {
+  export default class FileUploaderParameter extends UI5Element {
     /**
      * Constructor for a new FileUploaderParameter.
      *
      * Accepts an object literal `mSettings` that defines initial property values, aggregated and associated
      * objects as well as event handlers. See {@link sap.ui.base.ManagedObject#constructor} for a general description
      * of the syntax of the settings object.
-     *
-     * This class does not have its own settings, but all settings applicable to the base type {@link sap.ui.unified.FileUploaderParameter#constructor sap.ui.unified.FileUploaderParameter }
-     * can be used.
      */
     constructor(
       /**
@@ -8163,9 +11132,6 @@ declare module "sap/ui/commons/FileUploaderParameter" {
      * Accepts an object literal `mSettings` that defines initial property values, aggregated and associated
      * objects as well as event handlers. See {@link sap.ui.base.ManagedObject#constructor} for a general description
      * of the syntax of the settings object.
-     *
-     * This class does not have its own settings, but all settings applicable to the base type {@link sap.ui.unified.FileUploaderParameter#constructor sap.ui.unified.FileUploaderParameter }
-     * can be used.
      */
     constructor(
       /**
@@ -8182,7 +11148,7 @@ declare module "sap/ui/commons/FileUploaderParameter" {
      * Creates a new subclass of class sap.ui.commons.FileUploaderParameter with name `sClassName` and enriches
      * it with the information contained in `oClassInfo`.
      *
-     * `oClassInfo` might contain the same kind of information as described in {@link sap.ui.unified.FileUploaderParameter.extend}.
+     * `oClassInfo` might contain the same kind of information as described in {@link sap.ui.core.Element.extend}.
      *
      *
      * @returns Created class / constructor function
@@ -8209,15 +11175,207 @@ declare module "sap/ui/commons/FileUploaderParameter" {
      * @returns Metadata object describing this class
      */
     static getMetadata(): ElementMetadata;
+    /**
+     * Gets current value of property {@link #getName name}.
+     *
+     * The name of the hidden inputfield.
+     *
+     * @since 1.12.2
+     *
+     * @returns Value of property `name`
+     */
+    getName(): string;
+    /**
+     * Gets current value of property {@link #getValue value}.
+     *
+     * The value of the hidden inputfield.
+     *
+     * @since 1.12.2
+     *
+     * @returns Value of property `value`
+     */
+    getValue(): string;
+    /**
+     * Sets a new value for property {@link #getName name}.
+     *
+     * The name of the hidden inputfield.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * @since 1.12.2
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setName(
+      /**
+       * New value for property `name`
+       */
+      sName?: string
+    ): this;
+    /**
+     * Sets a new value for property {@link #getValue value}.
+     *
+     * The value of the hidden inputfield.
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * @since 1.12.2
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setValue(
+      /**
+       * New value for property `value`
+       */
+      sValue?: string
+    ): this;
   }
   /**
    * Describes the settings that can be provided to the FileUploaderParameter constructor.
    *
-   * @deprecated (since 1.21.0) - Please use the element sap.ui.unified.FileUploaderParameter of the library
-   * sap.ui.unified instead.
+   * @deprecated As of version 1.21.0. Please use the control sap.ui.unified.FileUploaderParameter of the
+   * library sap.ui.unified instead.
    */
-  export interface $FileUploaderParameterSettings
-    extends $FileUploaderParameterSettings1 {}
+  export interface $FileUploaderParameterSettings extends $ElementSettings {
+    /**
+     * The name of the hidden inputfield.
+     *
+     * @since 1.12.2
+     */
+    name?: string | PropertyBindingInfo;
+
+    /**
+     * The value of the hidden inputfield.
+     *
+     * @since 1.12.2
+     */
+    value?: string | PropertyBindingInfo;
+  }
+}
+
+declare module "sap/ui/commons/FileUploaderXHRSettings" {
+  import { default as UI5Element, $ElementSettings } from "sap/ui/core/Element";
+
+  import ElementMetadata from "sap/ui/core/ElementMetadata";
+
+  import { PropertyBindingInfo } from "sap/ui/base/ManagedObject";
+
+  /**
+   * Properties for the `XMLHttpRequest` object used for file uploads.
+   *
+   * @since 1.144
+   * @deprecated As of version 1.144.0. Please use the control sap.ui.unified.FileUploaderXHRSettings of the
+   * library sap.ui.unified instead.
+   */
+  export default class FileUploaderXHRSettings extends UI5Element {
+    /**
+     * Constructor for a new FileUploaderXHRSettings.
+     *
+     * Accepts an object literal `mSettings` that defines initial property values, aggregated and associated
+     * objects as well as event handlers. See {@link sap.ui.base.ManagedObject#constructor} for a general description
+     * of the syntax of the settings object.
+     */
+    constructor(
+      /**
+       * initial settings for the new control
+       */
+      mSettings?: $FileUploaderXHRSettingsSettings
+    );
+    /**
+     * Constructor for a new FileUploaderXHRSettings.
+     *
+     * Accepts an object literal `mSettings` that defines initial property values, aggregated and associated
+     * objects as well as event handlers. See {@link sap.ui.base.ManagedObject#constructor} for a general description
+     * of the syntax of the settings object.
+     */
+    constructor(
+      /**
+       * id for the new control, generated automatically if no id is given
+       */
+      sId?: string,
+      /**
+       * initial settings for the new control
+       */
+      mSettings?: $FileUploaderXHRSettingsSettings
+    );
+
+    /**
+     * Creates a new subclass of class sap.ui.commons.FileUploaderXHRSettings with name `sClassName` and enriches
+     * it with the information contained in `oClassInfo`.
+     *
+     * `oClassInfo` might contain the same kind of information as described in {@link sap.ui.core.Element.extend}.
+     *
+     *
+     * @returns Created class / constructor function
+     */
+    static extend<T extends Record<string, unknown>>(
+      /**
+       * Name of the class being created
+       */
+      sClassName: string,
+      /**
+       * Object literal with information about the class
+       */
+      oClassInfo?: sap.ClassInfo<T, FileUploaderXHRSettings>,
+      /**
+       * Constructor function for the metadata object; if not given, it defaults to the metadata implementation
+       * used by this class
+       */
+      FNMetaImpl?: Function
+    ): Function;
+    /**
+     * Returns a metadata object for class sap.ui.commons.FileUploaderXHRSettings.
+     *
+     *
+     * @returns Metadata object describing this class
+     */
+    static getMetadata(): ElementMetadata;
+    /**
+     * Gets current value of property {@link #getWithCredentials withCredentials}.
+     *
+     * Determines the value of the `XMLHttpRequest.withCredentials` property
+     *
+     * Default value is `false`.
+     *
+     * @since 1.52
+     *
+     * @returns Value of property `withCredentials`
+     */
+    getWithCredentials(): boolean;
+    /**
+     * Sets a new value for property {@link #getWithCredentials withCredentials}.
+     *
+     * Determines the value of the `XMLHttpRequest.withCredentials` property
+     *
+     * When called with a value of `null` or `undefined`, the default value of the property will be restored.
+     *
+     * Default value is `false`.
+     *
+     * @since 1.52
+     *
+     * @returns Reference to `this` in order to allow method chaining
+     */
+    setWithCredentials(
+      /**
+       * New value for property `withCredentials`
+       */
+      bWithCredentials?: boolean
+    ): this;
+  }
+  /**
+   * Describes the settings that can be provided to the FileUploaderXHRSettings constructor.
+   *
+   * @deprecated As of version 1.144.0. Please use the control sap.ui.unified.FileUploaderXHRSettings of the
+   * library sap.ui.unified instead.
+   */
+  export interface $FileUploaderXHRSettingsSettings extends $ElementSettings {
+    /**
+     * Determines the value of the `XMLHttpRequest.withCredentials` property
+     *
+     * @since 1.52
+     */
+    withCredentials?: boolean | PropertyBindingInfo | `{${string}}`;
+  }
 }
 
 declare module "sap/ui/commons/TextField" {
@@ -8248,7 +11406,7 @@ declare module "sap/ui/commons/TextField" {
    * The object representing the serialized focus information.
    *
    * @since 1.110
-   * @deprecated (since 1.110) - as it is an integral part of the already deprecated {@link sap.ui.commons.TextField}.
+   * @deprecated As of version 1.110. as it is an integral part of the already deprecated {@link sap.ui.commons.TextField}.
    * @ui5-protected DO NOT USE IN APPLICATIONS (only for related classes in the framework)
    */
   export type FocusInfo = {
@@ -8269,7 +11427,7 @@ declare module "sap/ui/commons/TextField" {
   /**
    * Renders an input field for text input.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Input}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Input}
    */
   export default class TextField
     extends Control
@@ -8571,7 +11729,7 @@ declare module "sap/ui/commons/TextField" {
      *
      * @returns Value of property `accessibleRole`
      */
-    getAccessibleRole(): AccessibleRole | keyof typeof AccessibleRole;
+    getAccessibleRole(): AccessibleRole;
     /**
      * Returns array of IDs of the elements which are the current targets of the association {@link #getAriaDescribedBy ariaDescribedBy}.
      */
@@ -8590,7 +11748,7 @@ declare module "sap/ui/commons/TextField" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): Design | keyof typeof Design;
+    getDesign(): Design;
     /**
      * Gets current value of property {@link #getEditable editable}.
      *
@@ -8642,7 +11800,7 @@ declare module "sap/ui/commons/TextField" {
      *
      * @returns Value of property `imeMode`
      */
-    getImeMode(): ImeMode | keyof typeof ImeMode;
+    getImeMode(): ImeMode;
     /**
      * Method for accessing the DOM Ref of the input element.
      *
@@ -8712,7 +11870,7 @@ declare module "sap/ui/commons/TextField" {
      *
      * @returns Value of property `textAlign`
      */
-    getTextAlign(): TextAlign | keyof typeof TextAlign;
+    getTextAlign(): TextAlign;
     /**
      * Gets current value of property {@link #getTextDirection textDirection}.
      *
@@ -8723,7 +11881,7 @@ declare module "sap/ui/commons/TextField" {
      *
      * @returns Value of property `textDirection`
      */
-    getTextDirection(): TextDirection | keyof typeof TextDirection;
+    getTextDirection(): TextDirection;
     /**
      * Gets current value of property {@link #getValue value}.
      *
@@ -8745,7 +11903,7 @@ declare module "sap/ui/commons/TextField" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -9131,7 +12289,7 @@ declare module "sap/ui/commons/TextField" {
   /**
    * Describes the settings that can be provided to the TextField constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Input}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Input}
    */
   export interface $TextFieldSettings extends $ControlSettings {
     /**
@@ -9306,7 +12464,7 @@ declare module "sap/ui/commons/form/Form" {
    * for it's conent to allow a simple switching of Layouts.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class Form extends Form1 {
     /**
@@ -9406,7 +12564,7 @@ declare module "sap/ui/commons/form/Form" {
   /**
    * Describes the settings that can be provided to the Form constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $FormSettings extends $FormSettings1 {}
 }
@@ -9423,7 +12581,7 @@ declare module "sap/ui/commons/form/FormContainer" {
    * Used to group form elements.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class FormContainer extends FormContainer1 {
     /**
@@ -9523,7 +12681,7 @@ declare module "sap/ui/commons/form/FormContainer" {
   /**
    * Describes the settings that can be provided to the FormContainer constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $FormContainerSettings extends $FormContainerSettings1 {}
 }
@@ -9540,7 +12698,7 @@ declare module "sap/ui/commons/form/FormElement" {
    * A form element is a combination of one label and different controls associated to this label.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class FormElement extends FormElement1 {
     /**
@@ -9640,7 +12798,7 @@ declare module "sap/ui/commons/form/FormElement" {
   /**
    * Describes the settings that can be provided to the FormElement constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $FormElementSettings extends $FormElementSettings1 {}
 }
@@ -9657,7 +12815,7 @@ declare module "sap/ui/commons/form/FormLayout" {
    * Base layout for Forms. Other Layouts must inherit from this one.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class FormLayout extends FormLayout1 {
     /**
@@ -9732,7 +12890,7 @@ declare module "sap/ui/commons/form/FormLayout" {
   /**
    * Describes the settings that can be provided to the FormLayout constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $FormLayoutSettings extends $FormLayoutSettings1 {}
 }
@@ -9750,7 +12908,7 @@ declare module "sap/ui/commons/form/GridContainerData" {
    * ignored since the witdh and heights are defined by the grid cells.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class GridContainerData extends GridContainerData1 {
     /**
@@ -9825,7 +12983,7 @@ declare module "sap/ui/commons/form/GridContainerData" {
   /**
    * Describes the settings that can be provided to the GridContainerData constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $GridContainerDataSettings
     extends $GridContainerDataSettings1 {}
@@ -9844,7 +13002,7 @@ declare module "sap/ui/commons/form/GridElementData" {
    * the width is defined by grid cells.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class GridElementData extends GridElementData1 {
     /**
@@ -9919,7 +13077,7 @@ declare module "sap/ui/commons/form/GridElementData" {
   /**
    * Describes the settings that can be provided to the GridElementData constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $GridElementDataSettings extends $GridElementDataSettings1 {}
 }
@@ -9938,7 +13096,7 @@ declare module "sap/ui/commons/form/GridLayout" {
    * To adjust the content inside the GridLayout GridContainerData and GridElementData could be used.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class GridLayout extends GridLayout1 {
     /**
@@ -10013,7 +13171,7 @@ declare module "sap/ui/commons/form/GridLayout" {
   /**
    * Describes the settings that can be provided to the GridLayout constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $GridLayoutSettings extends $GridLayoutSettings1 {}
 }
@@ -10030,7 +13188,7 @@ declare module "sap/ui/commons/form/ResponsiveLayout" {
    * Renders a form with responsive layout. Internally the ResponsiveFlowLayout is used.
    *
    * @since 1.10.0
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class ResponsiveLayout extends ResponsiveLayout1 {
     /**
@@ -10105,7 +13263,7 @@ declare module "sap/ui/commons/form/ResponsiveLayout" {
   /**
    * Describes the settings that can be provided to the ResponsiveLayout constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $ResponsiveLayoutSettings
     extends $ResponsiveLayoutSettings1 {}
@@ -10130,7 +13288,7 @@ declare module "sap/ui/commons/form/SimpleForm" {
    * Input/Display controls.
    *
    * @since 1.12
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class SimpleForm extends SimpleForm1 {
     /**
@@ -10214,7 +13372,7 @@ declare module "sap/ui/commons/form/SimpleForm" {
      *
      * @returns Value of property `layout`
      */
-    getLayout(): form.SimpleFormLayout | keyof typeof form.SimpleFormLayout;
+    getLayout(): form.SimpleFormLayout;
     /**
      * Sets a new value for property {@link #getLayout layout}.
      *
@@ -10246,7 +13404,7 @@ declare module "sap/ui/commons/form/SimpleForm" {
   /**
    * Describes the settings that can be provided to the SimpleForm constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $SimpleFormSettings extends $SimpleFormSettings1 {
     /**
@@ -10287,7 +13445,7 @@ declare module "sap/ui/commons/FormattedTextView" {
    * The FormattedTextView control allows the usage of a limited set of HTML tags for display.
    *
    * @since 1.9.0
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.core.HTML` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.core.HTML` control.
    */
   export default class FormattedTextView extends Control {
     /**
@@ -10381,7 +13539,7 @@ declare module "sap/ui/commons/FormattedTextView" {
      *
      * @returns Value of property `accessibleRole`
      */
-    getAccessibleRole(): AccessibleRole | keyof typeof AccessibleRole;
+    getAccessibleRole(): AccessibleRole;
     /**
      * Gets content of aggregation {@link #getControls controls}.
      *
@@ -10499,7 +13657,7 @@ declare module "sap/ui/commons/FormattedTextView" {
   /**
    * Describes the settings that can be provided to the FormattedTextView constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.core.HTML` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.core.HTML` control.
    */
   export interface $FormattedTextViewSettings extends $ControlSettings {
     /**
@@ -10539,8 +13697,8 @@ declare module "sap/ui/commons/HorizontalDivider" {
   /**
    * Divides the screen in visual areas.
    *
-   * @deprecated (since 1.38) - Use the layout controls instead, e.g {@link sap.ui.layout.Splitter} or {@link sap.ui.layout.BlockLayout }
-   * among others.
+   * @deprecated As of version 1.38. Use the layout controls instead, e.g {@link sap.ui.layout.Splitter} or
+   * {@link sap.ui.layout.BlockLayout} among others.
    */
   export default class HorizontalDivider extends Control {
     /**
@@ -10615,7 +13773,7 @@ declare module "sap/ui/commons/HorizontalDivider" {
      *
      * @returns Value of property `height`
      */
-    getHeight(): HorizontalDividerHeight | keyof typeof HorizontalDividerHeight;
+    getHeight(): HorizontalDividerHeight;
     /**
      * Gets current value of property {@link #getType type}.
      *
@@ -10626,7 +13784,7 @@ declare module "sap/ui/commons/HorizontalDivider" {
      *
      * @returns Value of property `type`
      */
-    getType(): HorizontalDividerType | keyof typeof HorizontalDividerType;
+    getType(): HorizontalDividerType;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -10696,8 +13854,8 @@ declare module "sap/ui/commons/HorizontalDivider" {
   /**
    * Describes the settings that can be provided to the HorizontalDivider constructor.
    *
-   * @deprecated (since 1.38) - Use the layout controls instead, e.g {@link sap.ui.layout.Splitter} or {@link sap.ui.layout.BlockLayout }
-   * among others.
+   * @deprecated As of version 1.38. Use the layout controls instead, e.g {@link sap.ui.layout.Splitter} or
+   * {@link sap.ui.layout.BlockLayout} among others.
    */
   export interface $HorizontalDividerSettings extends $ControlSettings {
     /**
@@ -10743,7 +13901,7 @@ declare module "sap/ui/commons/Image" {
    * A wrapper around the IMG tag. The image can be loaded from a remote or local server. There are various
    * size setting options available, and the images can be combined with actions.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Image}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Image}
    */
   export default class Image
     extends Control
@@ -11062,7 +14220,7 @@ declare module "sap/ui/commons/Image" {
   /**
    * Describes the settings that can be provided to the Image constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Image}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Image}
    */
   export interface $ImageSettings extends $ControlSettings {
     /**
@@ -11135,7 +14293,7 @@ declare module "sap/ui/commons/ImageMap" {
   /**
    * Combination of image areas where at runtime these areas are starting points for hyperlinks or actions
    *
-   * @deprecated (since 1.38) - There's not replacement because of the archaic design pattern.
+   * @deprecated As of version 1.38. There's not replacement because of the archaic design pattern.
    */
   export default class ImageMap extends Control {
     /**
@@ -11398,7 +14556,7 @@ declare module "sap/ui/commons/ImageMap" {
   /**
    * Describes the settings that can be provided to the ImageMap constructor.
    *
-   * @deprecated (since 1.38) - There's not replacement because of the archaic design pattern.
+   * @deprecated As of version 1.38. There's not replacement because of the archaic design pattern.
    */
   export interface $ImageMapSettings extends $ControlSettings {
     /**
@@ -11455,7 +14613,7 @@ declare module "sap/ui/commons/InPlaceEdit" {
    * The InPlaceEdit is a functionality to have text in display mode that can be changed in place.
    *
    * @since 1.8.0
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Input}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Input}
    */
   export default class InPlaceEdit extends Control {
     /**
@@ -11725,7 +14883,7 @@ declare module "sap/ui/commons/InPlaceEdit" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): TextViewDesign | keyof typeof TextViewDesign;
+    getDesign(): TextViewDesign;
     /**
      * Returns the tooltip for this InPlaceEdit if any or an undefined value. The tooltip can either be a simple
      * string or a subclass of {@link sap.ui.core.TooltipBase}.
@@ -11764,7 +14922,7 @@ declare module "sap/ui/commons/InPlaceEdit" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Sets the aggregated {@link #getContent content}.
      *
@@ -11855,7 +15013,7 @@ declare module "sap/ui/commons/InPlaceEdit" {
   /**
    * Describes the settings that can be provided to the InPlaceEdit constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Input}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Input}
    */
   export interface $InPlaceEditSettings extends $ControlSettings {
     /**
@@ -11964,7 +15122,7 @@ declare module "sap/ui/commons/Label" {
    * The control is used for labeling other controls. The API provides formatting options, for example, for
    * bold display or alignment. A label can have an icon.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Label` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Label` control.
    */
   export default class Label extends Control implements ToolbarItem, Label1 {
     __implements__sap_ui_commons_ToolbarItem: boolean;
@@ -12050,7 +15208,7 @@ declare module "sap/ui/commons/Label" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): LabelDesign | keyof typeof LabelDesign;
+    getDesign(): LabelDesign;
     /**
      * Gets current value of property {@link #getIcon icon}.
      *
@@ -12111,7 +15269,7 @@ declare module "sap/ui/commons/Label" {
      *
      * @returns Value of property `textAlign`
      */
-    getTextAlign(): TextAlign | keyof typeof TextAlign;
+    getTextAlign(): TextAlign;
     /**
      * Gets current value of property {@link #getTextDirection textDirection}.
      *
@@ -12122,7 +15280,7 @@ declare module "sap/ui/commons/Label" {
      *
      * @returns Value of property `textDirection`
      */
-    getTextDirection(): TextDirection | keyof typeof TextDirection;
+    getTextDirection(): TextDirection;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -12328,7 +15486,7 @@ declare module "sap/ui/commons/Label" {
   /**
    * Describes the settings that can be provided to the Label constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Label` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Label` control.
    */
   export interface $LabelSettings extends $ControlSettings {
     /**
@@ -12420,7 +15578,7 @@ declare module "sap/ui/commons/layout/AbsoluteLayout" {
   /**
    * The Absolute Layout positions its child controls absolutely
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export default class AbsoluteLayout extends Control {
     /**
@@ -12553,7 +15711,7 @@ declare module "sap/ui/commons/layout/AbsoluteLayout" {
      *
      * @returns Value of property `horizontalScrolling`
      */
-    getHorizontalScrolling(): Scrolling | keyof typeof Scrolling;
+    getHorizontalScrolling(): Scrolling;
     /**
      * Gets content of aggregation {@link #getPositions positions}.
      *
@@ -12570,7 +15728,7 @@ declare module "sap/ui/commons/layout/AbsoluteLayout" {
      *
      * @returns Value of property `verticalScrolling`
      */
-    getVerticalScrolling(): Scrolling | keyof typeof Scrolling;
+    getVerticalScrolling(): Scrolling;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -12751,7 +15909,7 @@ declare module "sap/ui/commons/layout/AbsoluteLayout" {
   /**
    * Describes the settings that can be provided to the AbsoluteLayout constructor.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export interface $AbsoluteLayoutSettings extends $ControlSettings {
     /**
@@ -12810,7 +15968,7 @@ declare module "sap/ui/commons/layout/BorderLayoutArea" {
   /**
    * The BorderLayoutArea represents one area of a BorderLayout
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Page` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Page` control.
    */
   export default class BorderLayoutArea extends UI5Element {
     /**
@@ -12901,13 +16059,11 @@ declare module "sap/ui/commons/layout/BorderLayoutArea" {
      *
      * Default value is `top`.
      *
-     * @deprecated (since 1.3.3) - Redundant to the aggregation by the parent border layout.
+     * @deprecated As of version 1.3.3. Redundant to the aggregation by the parent border layout.
      *
      * @returns Value of property `areaId`
      */
-    getAreaId():
-      | layout.BorderLayoutAreaTypes
-      | keyof typeof layout.BorderLayoutAreaTypes;
+    getAreaId(): layout.BorderLayoutAreaTypes;
     /**
      * Gets content of aggregation {@link #getContent content}.
      *
@@ -13030,7 +16186,7 @@ declare module "sap/ui/commons/layout/BorderLayoutArea" {
      *
      * Default value is `top`.
      *
-     * @deprecated (since 1.3.3) - Redundant to the aggregation by the parent border layout.
+     * @deprecated As of version 1.3.3. Redundant to the aggregation by the parent border layout.
      *
      * @returns Reference to `this` in order to allow method chaining
      */
@@ -13136,13 +16292,13 @@ declare module "sap/ui/commons/layout/BorderLayoutArea" {
   /**
    * Describes the settings that can be provided to the BorderLayoutArea constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Page` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Page` control.
    */
   export interface $BorderLayoutAreaSettings extends $ElementSettings {
     /**
      * Defines which area the element represents: top, begin, center, end, bottom
      *
-     * @deprecated (since 1.3.3) - Redundant to the aggregation by the parent border layout.
+     * @deprecated As of version 1.3.3. Redundant to the aggregation by the parent border layout.
      */
     areaId?:
       | (
@@ -13195,7 +16351,7 @@ declare module "sap/ui/commons/layout/HorizontalLayout" {
   /**
    * A layout that provides support for horizontal alignment of controls
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.HorizontalLayout` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.HorizontalLayout` control.
    */
   export default class HorizontalLayout extends HorizontalLayout1 {
     /**
@@ -13270,7 +16426,7 @@ declare module "sap/ui/commons/layout/HorizontalLayout" {
   /**
    * Describes the settings that can be provided to the HorizontalLayout constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.HorizontalLayout` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.HorizontalLayout` control.
    */
   export interface $HorizontalLayoutSettings
     extends $HorizontalLayoutSettings1 {}
@@ -13303,7 +16459,7 @@ declare module "sap/ui/commons/layout/MatrixLayout" {
    *  You should **avoid nesting** matrix layouts. You should only use a matrix layout if you need to align
    * controls horizontally across rows.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Grid` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Grid` control.
    */
   export default class MatrixLayout extends Control {
     /**
@@ -13597,7 +16753,7 @@ declare module "sap/ui/commons/layout/MatrixLayout" {
   /**
    * Describes the settings that can be provided to the MatrixLayout constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Grid` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Grid` control.
    */
   export interface $MatrixLayoutSettings extends $ControlSettings {
     /**
@@ -13657,7 +16813,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
   /**
    * Non-control element used as part of a matrix layout's inner structure.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Grid` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Grid` control.
    */
   export default class MatrixLayoutCell extends UI5Element {
     /**
@@ -13789,9 +16945,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
      *
      * @returns Value of property `backgroundDesign`
      */
-    getBackgroundDesign():
-      | layout.BackgroundDesign
-      | keyof typeof layout.BackgroundDesign;
+    getBackgroundDesign(): layout.BackgroundDesign;
     /**
      * Gets current value of property {@link #getColSpan colSpan}.
      *
@@ -13822,7 +16976,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
      *
      * @returns Value of property `hAlign`
      */
-    getHAlign(): layout.HAlign | keyof typeof layout.HAlign;
+    getHAlign(): layout.HAlign;
     /**
      * Gets current value of property {@link #getPadding padding}.
      *
@@ -13835,7 +16989,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
      *
      * @returns Value of property `padding`
      */
-    getPadding(): layout.Padding | keyof typeof layout.Padding;
+    getPadding(): layout.Padding;
     /**
      * Gets current value of property {@link #getRowSpan rowSpan}.
      *
@@ -13859,7 +17013,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
      *
      * @returns Value of property `separation`
      */
-    getSeparation(): layout.Separation | keyof typeof layout.Separation;
+    getSeparation(): layout.Separation;
     /**
      * Gets current value of property {@link #getVAlign vAlign}.
      *
@@ -13870,7 +17024,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
      *
      * @returns Value of property `vAlign`
      */
-    getVAlign(): layout.VAlign | keyof typeof layout.VAlign;
+    getVAlign(): layout.VAlign;
     /**
      * Returns true if the given style class string is valid and if this Element has this style class set via
      * a previous call to addStyleClass().
@@ -14081,7 +17235,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutCell" {
   /**
    * Describes the settings that can be provided to the MatrixLayoutCell constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Grid` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Grid` control.
    */
   export interface $MatrixLayoutCellSettings extends $ElementSettings {
     /**
@@ -14165,7 +17319,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutRow" {
   /**
    * Non-control element used as part of a matrix layout's inner structure.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Grid` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Grid` control.
    */
   export default class MatrixLayoutRow extends UI5Element {
     /**
@@ -14396,7 +17550,7 @@ declare module "sap/ui/commons/layout/MatrixLayoutRow" {
   /**
    * Describes the settings that can be provided to the MatrixLayoutRow constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Grid` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Grid` control.
    */
   export interface $MatrixLayoutRowSettings extends $ElementSettings {
     /**
@@ -14429,7 +17583,7 @@ declare module "sap/ui/commons/layout/PositionContainer" {
   /**
    * Is used to specify the position of a control in the AbsoluteLayout
    *
-   * @deprecated (since 1.38)
+   * @deprecated As of version 1.38.
    */
   export default class PositionContainer extends UI5Element {
     /**
@@ -14696,7 +17850,7 @@ declare module "sap/ui/commons/layout/PositionContainer" {
   /**
    * Describes the settings that can be provided to the PositionContainer constructor.
    *
-   * @deprecated (since 1.38)
+   * @deprecated As of version 1.38.
    */
   export interface $PositionContainerSettings extends $ElementSettings {
     /**
@@ -14751,7 +17905,7 @@ declare module "sap/ui/commons/layout/ResponsiveFlowLayout" {
    * If the window resizes the controls are moved between the lines and resized again.
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class ResponsiveFlowLayout extends ResponsiveFlowLayout1 {
     /**
@@ -14826,7 +17980,7 @@ declare module "sap/ui/commons/layout/ResponsiveFlowLayout" {
   /**
    * Describes the settings that can be provided to the ResponsiveFlowLayout constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $ResponsiveFlowLayoutSettings
     extends $ResponsiveFlowLayoutSettings1 {}
@@ -14844,7 +17998,7 @@ declare module "sap/ui/commons/layout/ResponsiveFlowLayoutData" {
    * This is a LayoutData Element that can be added to a control if this control is used within a ResponsiveFlowLayout
    *
    * @since 1.9.1
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export default class ResponsiveFlowLayoutData extends ResponsiveFlowLayoutData1 {
     /**
@@ -14944,7 +18098,7 @@ declare module "sap/ui/commons/layout/ResponsiveFlowLayoutData" {
   /**
    * Describes the settings that can be provided to the ResponsiveFlowLayoutData constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.layout library. Please use this one.
    */
   export interface $ResponsiveFlowLayoutDataSettings
     extends $ResponsiveFlowLayoutDataSettings1 {}
@@ -14961,7 +18115,7 @@ declare module "sap/ui/commons/layout/VerticalLayout" {
   /**
    * In this layout the elements are ordered one below the other
    *
-   * @deprecated (since 1.16.0) - Moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. Moved to sap.ui.layout library. Please use this one.
    */
   export default class VerticalLayout extends VerticalLayout1 {
     /**
@@ -15036,7 +18190,7 @@ declare module "sap/ui/commons/layout/VerticalLayout" {
   /**
    * Describes the settings that can be provided to the VerticalLayout constructor.
    *
-   * @deprecated (since 1.16.0) - Moved to sap.ui.layout library. Please use this one.
+   * @deprecated As of version 1.16.0. Moved to sap.ui.layout library. Please use this one.
    */
   export interface $VerticalLayoutSettings extends $VerticalLayoutSettings1 {}
 }
@@ -15068,7 +18222,7 @@ declare module "sap/ui/commons/Link" {
    * are supported. Another usage scenario is triggering an action, for example to open a popup window. In
    * both cases, the link is a hypertext link.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Link` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Link` control.
    */
   export default class Link
     extends Control
@@ -15475,7 +18629,7 @@ declare module "sap/ui/commons/Link" {
   /**
    * Describes the settings that can be provided to the Link constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Link` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Link` control.
    */
   export interface $LinkSettings extends $ControlSettings {
     /**
@@ -15562,7 +18716,7 @@ declare module "sap/ui/commons/ListBox" {
    * such as defining the list box height, fixing the number of visible items, choosing one item to be the
    * item that is marked by default when the list box is shown, or a scroll bar for large list boxes are available.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.List` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.List` control.
    */
   export default class ListBox extends Control {
     /**
@@ -15901,7 +19055,7 @@ declare module "sap/ui/commons/ListBox" {
      *
      * @returns Value of property `secondaryValueTextAlign`
      */
-    getSecondaryValueTextAlign(): TextAlign | keyof typeof TextAlign;
+    getSecondaryValueTextAlign(): TextAlign;
     /**
      * Zero-based index of selected item. Index value for no selection is -1. When multiple selection is enabled
      * and multiple items are selected, the method returns the first selected item.
@@ -15950,7 +19104,7 @@ declare module "sap/ui/commons/ListBox" {
      *
      * @returns Value of property `valueTextAlign`
      */
-    getValueTextAlign(): TextAlign | keyof typeof TextAlign;
+    getValueTextAlign(): TextAlign;
     /**
      * Returns the number of visible items.
      *
@@ -16378,7 +19532,7 @@ declare module "sap/ui/commons/ListBox" {
   /**
    * Describes the settings that can be provided to the ListBox constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.List` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.List` control.
    */
   export interface $ListBoxSettings extends $ControlSettings {
     /**
@@ -16540,7 +19694,7 @@ declare module "sap/ui/commons/Menu" {
    * within the control hierarchy. Instead it can be opened at a specified position via a function call.
    *
    * @since 1.0.0
-   * @deprecated (since 1.21.0) - replaced by {@link sap.ui.unified.Menu}
+   * @deprecated As of version 1.21.0. replaced by {@link sap.ui.unified.Menu}
    */
   export default class Menu extends Menu1 {
     /**
@@ -16615,7 +19769,7 @@ declare module "sap/ui/commons/Menu" {
   /**
    * Describes the settings that can be provided to the Menu constructor.
    *
-   * @deprecated (since 1.21.0) - replaced by {@link sap.ui.unified.Menu}
+   * @deprecated As of version 1.21.0. replaced by {@link sap.ui.unified.Menu}
    */
   export interface $MenuSettings extends $MenuSettings1 {}
 }
@@ -16644,7 +19798,7 @@ declare module "sap/ui/commons/MenuBar" {
    * enough to display all items, defining images for single or all items in a menu, automated layouting of
    * items with or w/o image, and active/non-active items.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.OverflowToolbar` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.OverflowToolbar` control.
    */
   export default class MenuBar extends Control {
     /**
@@ -16738,7 +19892,7 @@ declare module "sap/ui/commons/MenuBar" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): MenuBarDesign | keyof typeof MenuBarDesign;
+    getDesign(): MenuBarDesign;
     /**
      * Gets current value of property {@link #getEnabled enabled}.
      *
@@ -16877,7 +20031,7 @@ declare module "sap/ui/commons/MenuBar" {
   /**
    * Describes the settings that can be provided to the MenuBar constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.OverflowToolbar` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.OverflowToolbar` control.
    */
   export interface $MenuBarSettings extends $ControlSettings {
     /**
@@ -16928,7 +20082,7 @@ declare module "sap/ui/commons/MenuButton" {
    * Common button control that opens a menu when clicked by the user. The control provides an API for configuring
    * the docking position of the menu.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.MenuButton` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.MenuButton` control.
    */
   export default class MenuButton extends Button {
     /**
@@ -17240,7 +20394,7 @@ declare module "sap/ui/commons/MenuButton" {
   /**
    * Describes the settings that can be provided to the MenuButton constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.MenuButton` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.MenuButton` control.
    */
   export interface $MenuButtonSettings extends $ButtonSettings {
     /**
@@ -17327,7 +20481,7 @@ declare module "sap/ui/commons/MenuItem" {
    * user in the menu or it can provide a submenu to organize the actions hierarchically.
    *
    * @since 1.0.0
-   * @deprecated (since 1.21.0) - replaced by {@link sap.ui.unified.MenuItem}
+   * @deprecated As of version 1.21.0. replaced by {@link sap.ui.unified.MenuItem}
    */
   export default class MenuItem extends MenuItem1 {
     /**
@@ -17402,7 +20556,7 @@ declare module "sap/ui/commons/MenuItem" {
   /**
    * Describes the settings that can be provided to the MenuItem constructor.
    *
-   * @deprecated (since 1.21.0) - replaced by {@link sap.ui.unified.MenuItem}
+   * @deprecated As of version 1.21.0. replaced by {@link sap.ui.unified.MenuItem}
    */
   export interface $MenuItemSettings extends $MenuItemSettings1 {}
 }
@@ -17417,7 +20571,7 @@ declare module "sap/ui/commons/MenuItemBase" {
    * Abstract base class for menu item which provides common properties and events for all concrete item implementations.
    *
    * @since 1.0.0
-   * @deprecated (since 1.21.0) - replaced by {@link sap.ui.unified.MenuItemBase}
+   * @deprecated As of version 1.21.0. replaced by {@link sap.ui.unified.MenuItemBase}
    */
   export default abstract class MenuItemBase extends MenuItemBase1 {
     /**
@@ -17446,7 +20600,7 @@ declare module "sap/ui/commons/MenuItemBase" {
   /**
    * Describes the settings that can be provided to the MenuItemBase constructor.
    *
-   * @deprecated (since 1.21.0) - replaced by {@link sap.ui.unified.MenuItemBase}
+   * @deprecated As of version 1.21.0. replaced by {@link sap.ui.unified.MenuItemBase}
    */
   export interface $MenuItemBaseSettings extends $MenuItemBaseSettings1 {}
 }
@@ -17464,7 +20618,7 @@ declare module "sap/ui/commons/MenuTextFieldItem" {
    * implementations. The aggregation `submenu` (inherited from parent class) is not supported for this type
    * of menu item.
    *
-   * @deprecated (since 1.21.0) - Please use the control `sap.ui.unified.MenuTextFieldItem` of the library
+   * @deprecated As of version 1.21.0. Please use the control `sap.ui.unified.MenuTextFieldItem` of the library
    * `sap.ui.unified` instead.
    */
   export default class MenuTextFieldItem extends MenuTextFieldItem1 {
@@ -17540,7 +20694,7 @@ declare module "sap/ui/commons/MenuTextFieldItem" {
   /**
    * Describes the settings that can be provided to the MenuTextFieldItem constructor.
    *
-   * @deprecated (since 1.21.0) - Please use the control `sap.ui.unified.MenuTextFieldItem` of the library
+   * @deprecated As of version 1.21.0. Please use the control `sap.ui.unified.MenuTextFieldItem` of the library
    * `sap.ui.unified` instead.
    */
   export interface $MenuTextFieldItemSettings
@@ -17559,7 +20713,7 @@ declare module "sap/ui/commons/Message" {
   /**
    * Creates the "Message"s to be supplied to the "MessageBar" Control.
    *
-   * @deprecated (since 1.4.0) - A new messaging concept will be created in future. Therefore this control
+   * @deprecated As of version 1.4.0. A new messaging concept will be created in future. Therefore this control
    * might be removed in one of the next versions.
    */
   export default class Message extends Control {
@@ -17674,7 +20828,7 @@ declare module "sap/ui/commons/Message" {
      *
      * @returns Value of property `type`
      */
-    getType(): MessageType | keyof typeof MessageType;
+    getType(): MessageType;
     /**
      * Sets a new value for property {@link #getAssociatedElementId associatedElementId}.
      *
@@ -17743,7 +20897,7 @@ declare module "sap/ui/commons/Message" {
   /**
    * Describes the settings that can be provided to the Message constructor.
    *
-   * @deprecated (since 1.4.0) - A new messaging concept will be created in future. Therefore this control
+   * @deprecated As of version 1.4.0. A new messaging concept will be created in future. Therefore this control
    * might be removed in one of the next versions.
    */
   export interface $MessageSettings extends $ControlSettings {
@@ -17784,7 +20938,7 @@ declare module "sap/ui/commons/MessageBar" {
   /**
    * Creates an instance of a MessageBar Control, for displaying messages.
    *
-   * @deprecated (since 1.4.0) - Instead, use the `sap.m.MessagePopover` control.
+   * @deprecated As of version 1.4.0. Instead, use the `sap.m.MessagePopover` control.
    */
   export default class MessageBar extends Control {
     /**
@@ -18032,7 +21186,7 @@ declare module "sap/ui/commons/MessageBar" {
   /**
    * Describes the settings that can be provided to the MessageBar constructor.
    *
-   * @deprecated (since 1.4.0) - Instead, use the `sap.m.MessagePopover` control.
+   * @deprecated As of version 1.4.0. Instead, use the `sap.m.MessagePopover` control.
    */
   export interface $MessageBarSettings extends $ControlSettings {
     /**
@@ -18089,7 +21243,7 @@ declare module "sap/ui/commons/MessageBox" {
    *
    *
    * @since 0.8.8
-   * @deprecated (since 1.38) - Instead, use the `sap.m.MessageBox` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.MessageBox` control.
    */
   interface MessageBox {
     /**
@@ -18101,7 +21255,7 @@ declare module "sap/ui/commons/MessageBox" {
      * This enum is part of the 'sap/ui/commons/MessageBox' module export and must be accessed by the property
      * 'Action'.
      *
-     * @deprecated (since 1.38) - Instead, use the `sap.m.MessageBox.Action`.
+     * @deprecated As of version 1.38. Instead, use the `sap.m.MessageBox.Action`.
      */
     Action: typeof Action;
 
@@ -18111,7 +21265,7 @@ declare module "sap/ui/commons/MessageBox" {
      * This enum is part of the 'sap/ui/commons/MessageBox' module export and must be accessed by the property
      * 'Icon'.
      *
-     * @deprecated (since 1.38) - Instead, use the `sap.m.MessageBox.Icon`.
+     * @deprecated As of version 1.38. Instead, use the `sap.m.MessageBox.Icon`.
      */
     Icon: typeof Icon;
 
@@ -18241,7 +21395,7 @@ declare module "sap/ui/commons/MessageBox" {
   }
   const MessageBox: MessageBox;
   /**
-   * @deprecated (since 1.38) - Instead, use the `sap.m.MessageBox` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.MessageBox` control.
    */
   export default MessageBox;
 
@@ -18254,7 +21408,7 @@ declare module "sap/ui/commons/MessageBox" {
    * This enum is part of the 'sap/ui/commons/MessageBox' module export and must be accessed by the property
    * 'Action'.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.MessageBox.Action`.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.MessageBox.Action`.
    */
   enum Action {
     /**
@@ -18296,13 +21450,13 @@ declare module "sap/ui/commons/MessageBox" {
    * This enum is part of the 'sap/ui/commons/MessageBox' module export and must be accessed by the property
    * 'Icon'.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.MessageBox.Icon`.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.MessageBox.Icon`.
    */
   enum Icon {
     /**
      * Shows the critical error icon in the message box.
      *
-     * @deprecated (since 1.9.1) - The error icon is used instead
+     * @deprecated As of version 1.9.1. The error icon is used instead
      */
     CRITICAL = "CRITICAL",
     /**
@@ -18344,7 +21498,7 @@ declare module "sap/ui/commons/MessageList" {
   /**
    * Instantiated by the "MessageBar" Control if the user requests to generate the corresponding "MessageList".
    *
-   * @deprecated (since 1.4.0) - A new messaging concept will be created in future. Therefore this control
+   * @deprecated As of version 1.4.0. A new messaging concept will be created in future. Therefore this control
    * might be removed in one of the next versions.
    */
   export default class MessageList extends Control {
@@ -18505,7 +21659,7 @@ declare module "sap/ui/commons/MessageList" {
   /**
    * Describes the settings that can be provided to the MessageList constructor.
    *
-   * @deprecated (since 1.4.0) - A new messaging concept will be created in future. Therefore this control
+   * @deprecated As of version 1.4.0. A new messaging concept will be created in future. Therefore this control
    * might be removed in one of the next versions.
    */
   export interface $MessageListSettings extends $ControlSettings {
@@ -18540,7 +21694,7 @@ declare module "sap/ui/commons/MessageToast" {
   /**
    * Responsible for displaying the new incoming messages, one at the time, on top of the MessageBar.
    *
-   * @deprecated (since 1.4.0) - Instead, use the `sap.m.MessageToast` control.
+   * @deprecated As of version 1.4.0. Instead, use the `sap.m.MessageToast` control.
    */
   export default class MessageToast extends Control {
     /**
@@ -18732,7 +21886,7 @@ declare module "sap/ui/commons/MessageToast" {
   /**
    * Describes the settings that can be provided to the MessageToast constructor.
    *
-   * @deprecated (since 1.4.0) - Instead, use the `sap.m.MessageToast` control.
+   * @deprecated As of version 1.4.0. Instead, use the `sap.m.MessageToast` control.
    */
   export interface $MessageToastSettings extends $ControlSettings {
     /**
@@ -18774,7 +21928,7 @@ declare module "sap/ui/commons/Paginator" {
   /**
    * Provides navigation between pages within a list of numbered pages.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export default class Paginator extends Control {
     /**
@@ -18975,7 +22129,7 @@ declare module "sap/ui/commons/Paginator" {
   /**
    * Describes the settings that can be provided to the Paginator constructor.
    *
-   * @deprecated (since 1.38) - the concept has been discarded.
+   * @deprecated As of version 1.38. the concept has been discarded.
    */
   export interface $PaginatorSettings extends $ControlSettings {
     /**
@@ -19049,7 +22203,7 @@ declare module "sap/ui/commons/Panel" {
    * Represents a container with scroll functionality, that can be used for text and controls. The Panel does
    * not layout the embedded controls.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Panel` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Panel` control.
    */
   export default class Panel extends Control {
     /**
@@ -19180,7 +22334,7 @@ declare module "sap/ui/commons/Panel" {
      *
      * @returns Value of property `areaDesign`
      */
-    getAreaDesign(): enums.AreaDesign | keyof typeof enums.AreaDesign;
+    getAreaDesign(): enums.AreaDesign;
     /**
      * Gets current value of property {@link #getBorderDesign borderDesign}.
      *
@@ -19191,7 +22345,7 @@ declare module "sap/ui/commons/Panel" {
      *
      * @returns Value of property `borderDesign`
      */
-    getBorderDesign(): enums.BorderDesign | keyof typeof enums.BorderDesign;
+    getBorderDesign(): enums.BorderDesign;
     /**
      * Gets content of aggregation {@link #getButtons buttons}.
      *
@@ -19586,7 +22740,7 @@ declare module "sap/ui/commons/Panel" {
   /**
    * Describes the settings that can be provided to the Panel constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Panel` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Panel` control.
    */
   export interface $PanelSettings extends $ControlSettings {
     /**
@@ -19684,7 +22838,7 @@ declare module "sap/ui/commons/PasswordField" {
   /**
    * A text field with masked characters which borrows its properties and methods from TextField.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Input` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Input` control.
    */
   export default class PasswordField extends TextField {
     /**
@@ -19759,7 +22913,7 @@ declare module "sap/ui/commons/PasswordField" {
   /**
    * Describes the settings that can be provided to the PasswordField constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Input` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Input` control.
    */
   export interface $PasswordFieldSettings extends $TextFieldSettings {}
 }
@@ -19778,7 +22932,7 @@ declare module "sap/ui/commons/ProgressIndicator" {
    * values. The filling can be displayed in color only, or additionally with the percentage rate. The indicator
    * status can be interactive.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.ProgressIndicator` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.ProgressIndicator` control.
    */
   export default class ProgressIndicator extends Control {
     /**
@@ -19864,7 +23018,7 @@ declare module "sap/ui/commons/ProgressIndicator" {
      *
      * @returns Value of property `barColor`
      */
-    getBarColor(): BarColor | keyof typeof BarColor;
+    getBarColor(): BarColor;
     /**
      * Gets current value of property {@link #getDisplayValue displayValue}.
      *
@@ -20031,7 +23185,7 @@ declare module "sap/ui/commons/ProgressIndicator" {
   /**
    * Describes the settings that can be provided to the ProgressIndicator constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.ProgressIndicator` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.ProgressIndicator` control.
    */
   export interface $ProgressIndicatorSettings extends $ControlSettings {
     /**
@@ -20097,7 +23251,7 @@ declare module "sap/ui/commons/RadioButton" {
    * sap.ui.commons.RadioButtonGroup), thus providing a limited choice for the user. An event is triggered
    * when the user makes a change of the selection.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.RadioButton` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.RadioButton` control.
    */
   export default class RadioButton extends Control implements IFormContent {
     __implements__sap_ui_core_IFormContent: boolean;
@@ -20348,7 +23502,7 @@ declare module "sap/ui/commons/RadioButton" {
      *
      * @returns Value of property `textDirection`
      */
-    getTextDirection(): TextDirection | keyof typeof TextDirection;
+    getTextDirection(): TextDirection;
     /**
      * Gets current value of property {@link #getValueState valueState}.
      *
@@ -20359,7 +23513,7 @@ declare module "sap/ui/commons/RadioButton" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -20572,7 +23726,7 @@ declare module "sap/ui/commons/RadioButton" {
   /**
    * Describes the settings that can be provided to the RadioButton constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.RadioButton` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.RadioButton` control.
    */
   export interface $RadioButtonSettings extends $ControlSettings {
     /**
@@ -20682,7 +23836,7 @@ declare module "sap/ui/commons/RadioButtonGroup" {
    * For the representation of the single group entries, the RadioButton items are created automatically.
    * For the RadioButton choice, mouse and keyboard navigation usage is supported.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.RadioButtonGroup` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.RadioButtonGroup` control.
    */
   export default class RadioButtonGroup
     extends Control
@@ -20978,7 +24132,7 @@ declare module "sap/ui/commons/RadioButtonGroup" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -21212,7 +24366,7 @@ declare module "sap/ui/commons/RadioButtonGroup" {
   /**
    * Describes the settings that can be provided to the RadioButtonGroup constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.RadioButtonGroup` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.RadioButtonGroup` control.
    */
   export interface $RadioButtonGroupSettings extends $ControlSettings {
     /**
@@ -21309,7 +24463,7 @@ declare module "sap/ui/commons/RangeSlider" {
    * units of measurement. Users can move the pointers along the line to change a range with graphical support.
    *
    * @since 1.8.0
-   * @deprecated (since 1.38) - replaced by {@link sap.m.RangeSlider}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.RangeSlider}
    */
   export default class RangeSlider extends Slider {
     /**
@@ -21413,7 +24567,7 @@ declare module "sap/ui/commons/RangeSlider" {
   /**
    * Describes the settings that can be provided to the RangeSlider constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.RangeSlider}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.RangeSlider}
    */
   export interface $RangeSliderSettings extends $SliderSettings {
     /**
@@ -21444,7 +24598,7 @@ declare module "sap/ui/commons/RatingIndicator" {
    * can be specified, as well as the URIs to the image icons which shall be used as rating symbols. When
    * the user performs a rating, an event is fired.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.RatingIndicator` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.RatingIndicator` control.
    */
   export default class RatingIndicator extends Control {
     /**
@@ -21731,9 +24885,7 @@ declare module "sap/ui/commons/RatingIndicator" {
      *
      * @returns Value of property `visualMode`
      */
-    getVisualMode():
-      | RatingIndicatorVisualMode
-      | keyof typeof RatingIndicatorVisualMode;
+    getVisualMode(): RatingIndicatorVisualMode;
     /**
      * Removes all the controls in the association named {@link #getAriaDescribedBy ariaDescribedBy}.
      *
@@ -21926,7 +25078,7 @@ declare module "sap/ui/commons/RatingIndicator" {
   /**
    * Describes the settings that can be provided to the RatingIndicator constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.RatingIndicator` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.RatingIndicator` control.
    */
   export interface $RatingIndicatorSettings extends $ControlSettings {
     /**
@@ -22035,7 +25187,7 @@ declare module "sap/ui/commons/ResponsiveContainer" {
    * an event, whenever a new range is reached. In addition the content of the new range is automatically
    * shown, if it is set.
    *
-   * @deprecated (since 1.38) - Use a container by choice from the {@link sap.m} library, instead.
+   * @deprecated As of version 1.38. Use a container by choice from the {@link sap.m} library, instead.
    */
   export default class ResponsiveContainer extends Control {
     /**
@@ -22337,7 +25489,7 @@ declare module "sap/ui/commons/ResponsiveContainer" {
   /**
    * Describes the settings that can be provided to the ResponsiveContainer constructor.
    *
-   * @deprecated (since 1.38) - Use a container by choice from the {@link sap.m} library, instead.
+   * @deprecated As of version 1.38. Use a container by choice from the {@link sap.m} library, instead.
    */
   export interface $ResponsiveContainerSettings extends $ControlSettings {
     /**
@@ -22403,8 +25555,8 @@ declare module "sap/ui/commons/ResponsiveContainerRange" {
   /**
    * Defines a range for the ResponsiveContainer
    *
-   * @deprecated (since 1.38) - (altogether with sap.ui.commons.ResponsiveContainer). Use a container of your
-   * choice from the sap.m library instead.
+   * @deprecated As of version 1.38. (altogether with sap.ui.commons.ResponsiveContainer). Use a container
+   * of your choice from the sap.m library instead.
    */
   export default class ResponsiveContainerRange extends UI5Element {
     /**
@@ -22577,8 +25729,8 @@ declare module "sap/ui/commons/ResponsiveContainerRange" {
   /**
    * Describes the settings that can be provided to the ResponsiveContainerRange constructor.
    *
-   * @deprecated (since 1.38) - (altogether with sap.ui.commons.ResponsiveContainer). Use a container of your
-   * choice from the sap.m library instead.
+   * @deprecated As of version 1.38. (altogether with sap.ui.commons.ResponsiveContainer). Use a container
+   * of your choice from the sap.m library instead.
    */
   export interface $ResponsiveContainerRangeSettings extends $ElementSettings {
     /**
@@ -22618,8 +25770,8 @@ declare module "sap/ui/commons/RichTooltip" {
   /**
    * Is used to provide tool tips that can have long text, image and title. This tool tip extends the TooltipBase.
    *
-   * @deprecated (since 1.38) - Tf you want to achieve a similar behavior, use a `sap.m.Popover` control and
-   * open it next to your control.
+   * @deprecated As of version 1.38. Tf you want to achieve a similar behavior, use a `sap.m.Popover` control
+   * and open it next to your control.
    */
   export default class RichTooltip extends TooltipBase {
     /**
@@ -22793,8 +25945,8 @@ declare module "sap/ui/commons/RichTooltip" {
   /**
    * Describes the settings that can be provided to the RichTooltip constructor.
    *
-   * @deprecated (since 1.38) - Tf you want to achieve a similar behavior, use a `sap.m.Popover` control and
-   * open it next to your control.
+   * @deprecated As of version 1.38. Tf you want to achieve a similar behavior, use a `sap.m.Popover` control
+   * and open it next to your control.
    */
   export interface $RichTooltipSettings extends $TooltipBaseSettings {
     /**
@@ -22842,7 +25994,7 @@ declare module "sap/ui/commons/RoadMap" {
   /**
    * RoadMap is used to display step-by-step work flows of a clearly defined work process.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Wizard` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Wizard` control.
    */
   export default class RoadMap extends Control {
     /**
@@ -23248,7 +26400,7 @@ declare module "sap/ui/commons/RoadMap" {
   /**
    * Describes the settings that can be provided to the RoadMap constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Wizard` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Wizard` control.
    */
   export interface $RoadMapSettings extends $ControlSettings {
     /**
@@ -23341,7 +26493,7 @@ declare module "sap/ui/commons/RoadMapStep" {
   /**
    * Step used within a RoadMap Control.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Wizard` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Wizard` control.
    */
   export default class RoadMapStep extends UI5Element {
     /**
@@ -23409,7 +26561,7 @@ declare module "sap/ui/commons/RoadMapStep" {
     /**
      * Adds some subStep to the aggregation {@link #getSubSteps subSteps}.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      *
      * @returns Reference to `this` in order to allow method chaining
@@ -23423,7 +26575,7 @@ declare module "sap/ui/commons/RoadMapStep" {
     /**
      * Destroys all the subSteps in the aggregation {@link #getSubSteps subSteps}.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      *
      * @returns Reference to `this` in order to allow method chaining
@@ -23447,7 +26599,7 @@ declare module "sap/ui/commons/RoadMapStep" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 1.10.5) - Note that sub steps will not be supported in future. This feature might
+     * @deprecated As of version 1.10.5. Note that sub steps will not be supported in future. This feature might
      * be removed in one of the next releases.
      *
      * @returns Value of property `expanded`
@@ -23468,7 +26620,7 @@ declare module "sap/ui/commons/RoadMapStep" {
      * Sub steps for the current step. Will be displayed only in the case that the step is expanded. Otherwise,
      * special arrows show the availability of sub steps. One level of sub steps supported.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      */
     getSubSteps(): RoadMapStep[];
@@ -23487,7 +26639,7 @@ declare module "sap/ui/commons/RoadMapStep" {
      * Checks for the provided `sap.ui.commons.RoadMapStep` in the aggregation {@link #getSubSteps subSteps}.
      * and returns its index if found or -1 otherwise.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      *
      * @returns The index of the provided control in the aggregation if found, or -1 otherwise
@@ -23501,7 +26653,7 @@ declare module "sap/ui/commons/RoadMapStep" {
     /**
      * Inserts a subStep into the aggregation {@link #getSubSteps subSteps}.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      *
      * @returns Reference to `this` in order to allow method chaining
@@ -23523,7 +26675,7 @@ declare module "sap/ui/commons/RoadMapStep" {
      *
      * Additionally, it unregisters them from the hosting UIArea.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      *
      * @returns An array of the removed elements (might be empty)
@@ -23532,7 +26684,7 @@ declare module "sap/ui/commons/RoadMapStep" {
     /**
      * Removes a subStep from the aggregation {@link #getSubSteps subSteps}.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      *
      * @returns The removed subStep or `null`
@@ -23570,7 +26722,7 @@ declare module "sap/ui/commons/RoadMapStep" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 1.10.5) - Note that sub steps will not be supported in future. This feature might
+     * @deprecated As of version 1.10.5. Note that sub steps will not be supported in future. This feature might
      * be removed in one of the next releases.
      *
      * @returns Reference to `this` in order to allow method chaining
@@ -23619,7 +26771,7 @@ declare module "sap/ui/commons/RoadMapStep" {
   /**
    * Describes the settings that can be provided to the RoadMapStep constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Wizard` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Wizard` control.
    */
   export interface $RoadMapStepSettings extends $ElementSettings {
     /**
@@ -23635,7 +26787,7 @@ declare module "sap/ui/commons/RoadMapStep" {
     /**
      * This property is only relevant when using sub steps.
      *
-     * @deprecated (since 1.10.5) - Note that sub steps will not be supported in future. This feature might
+     * @deprecated As of version 1.10.5. Note that sub steps will not be supported in future. This feature might
      * be removed in one of the next releases.
      */
     expanded?: boolean | PropertyBindingInfo | `{${string}}`;
@@ -23649,7 +26801,7 @@ declare module "sap/ui/commons/RoadMapStep" {
      * Sub steps for the current step. Will be displayed only in the case that the step is expanded. Otherwise,
      * special arrows show the availability of sub steps. One level of sub steps supported.
      *
-     * @deprecated (since 1.10.5) - Sub steps will not be supported in future. This feature might be removed
+     * @deprecated As of version 1.10.5. Sub steps will not be supported in future. This feature might be removed
      * in one of the next releases.
      */
     subSteps?:
@@ -23686,7 +26838,7 @@ declare module "sap/ui/commons/RowRepeater" {
    * This control displays items in a stacked list format, allowing the user to page in order to see more
    * items or to use the offered filtering and sorting capabilities in order to manipulate the displayed data.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.table.Table` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.table.Table` control.
    */
   export default class RowRepeater extends Control {
     /**
@@ -24183,7 +27335,7 @@ declare module "sap/ui/commons/RowRepeater" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): RowRepeaterDesign | keyof typeof RowRepeaterDesign;
+    getDesign(): RowRepeaterDesign;
     /**
      * Gets content of aggregation {@link #getFilters filters}.
      *
@@ -24590,7 +27742,7 @@ declare module "sap/ui/commons/RowRepeater" {
   /**
    * Describes the settings that can be provided to the RowRepeater constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.table.Table` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.table.Table` control.
    */
   export interface $RowRepeaterSettings extends $ControlSettings {
     /**
@@ -24776,7 +27928,7 @@ declare module "sap/ui/commons/RowRepeaterFilter" {
    * This element is used by the RowRepeater and allows to define a filter in this context along with the
    * related data such as a text and an icon.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.table.Table` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.table.Table` control.
    */
   export default class RowRepeaterFilter extends UI5Element {
     /**
@@ -24920,7 +28072,7 @@ declare module "sap/ui/commons/RowRepeaterFilter" {
   /**
    * Describes the settings that can be provided to the RowRepeaterFilter constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.table.Table` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.table.Table` control.
    */
   export interface $RowRepeaterFilterSettings extends $ElementSettings {
     /**
@@ -24951,7 +28103,7 @@ declare module "sap/ui/commons/RowRepeaterSorter" {
    * This element is used by the RowRepeater and allows to define a sorter in this context along with the
    * related data such as a text and an icon.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.table.Table` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.table.Table` control.
    */
   export default class RowRepeaterSorter extends UI5Element {
     /**
@@ -25095,7 +28247,7 @@ declare module "sap/ui/commons/RowRepeaterSorter" {
   /**
    * Describes the settings that can be provided to the RowRepeaterSorter constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.table.Table` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.table.Table` control.
    */
   export interface $RowRepeaterSorterSettings extends $ElementSettings {
     /**
@@ -25133,7 +28285,7 @@ declare module "sap/ui/commons/SearchField" {
   /**
    * Allows the user to type search queries and to trigger the search. Optionally, suggestions can be added.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.SearchField` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.SearchField` control.
    */
   export default class SearchField extends Control implements ToolbarItem {
     __implements__sap_ui_commons_ToolbarItem: boolean;
@@ -25563,7 +28715,7 @@ declare module "sap/ui/commons/SearchField" {
      *
      * @returns Value of property `textAlign`
      */
-    getTextAlign(): TextAlign | keyof typeof TextAlign;
+    getTextAlign(): TextAlign;
     /**
      * Gets current value of property {@link #getValue value}.
      *
@@ -25586,7 +28738,7 @@ declare module "sap/ui/commons/SearchField" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Gets current value of property {@link #getVisibleItemCount visibleItemCount}.
      *
@@ -26006,7 +29158,7 @@ declare module "sap/ui/commons/SearchField" {
   /**
    * Describes the settings that can be provided to the SearchField constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.SearchField` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.SearchField` control.
    */
   export interface $SearchFieldSettings extends $ControlSettings {
     /**
@@ -26190,7 +29342,7 @@ declare module "sap/ui/commons/SearchProvider" {
   /**
    * A SearchProvider which can be attached to a Search Field.
    *
-   * @deprecated (since 1.6.0) - Replaced by sap.ui.core.search.OpenSearchProvider
+   * @deprecated As of version 1.6.0. Replaced by sap.ui.core.search.OpenSearchProvider
    */
   export default class SearchProvider extends OpenSearchProvider {
     /**
@@ -26265,7 +29417,7 @@ declare module "sap/ui/commons/SearchProvider" {
   /**
    * Describes the settings that can be provided to the SearchProvider constructor.
    *
-   * @deprecated (since 1.6.0) - Replaced by sap.ui.core.search.OpenSearchProvider
+   * @deprecated As of version 1.6.0. Replaced by sap.ui.core.search.OpenSearchProvider
    */
   export interface $SearchProviderSettings
     extends $OpenSearchProviderSettings {}
@@ -26293,7 +29445,7 @@ declare module "sap/ui/commons/SegmentedButton" {
    * The SegmentedButton provides a group of multiple buttons. Only one button can be active. The behaviour
    * is more ore less like a radio button group.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.SegmentedButton}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.SegmentedButton}
    */
   export default class SegmentedButton
     extends Control
@@ -26575,7 +29727,7 @@ declare module "sap/ui/commons/SegmentedButton" {
   /**
    * Describes the settings that can be provided to the SegmentedButton constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.SegmentedButton}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.SegmentedButton}
    */
   export interface $SegmentedButtonSettings extends $ControlSettings {
     /**
@@ -26633,7 +29785,7 @@ declare module "sap/ui/commons/Slider" {
    * The interactive control is displayed either as a horizontal or a vertical line with a pointer and units
    * of measurement. Users can move the pointer along the line to change values with graphical support.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Slider}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Slider}
    */
   export default class Slider extends Control implements IFormContent {
     __implements__sap_ui_core_IFormContent: boolean;
@@ -27291,7 +30443,7 @@ declare module "sap/ui/commons/Slider" {
   /**
    * Describes the settings that can be provided to the Slider constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Slider}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Slider}
    */
   export interface $SliderSettings extends $ControlSettings {
     /**
@@ -27443,7 +30595,7 @@ declare module "sap/ui/commons/Splitter" {
    * height or set an absolute height for the splitter using the height property. Otherwise the height of
    * the splitter is calculated by the height of its contents.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Splitter` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Splitter` control.
    */
   export default class Splitter extends Control {
     /**
@@ -27626,7 +30778,7 @@ declare module "sap/ui/commons/Splitter" {
      *
      * @returns Value of property `splitterOrientation`
      */
-    getSplitterOrientation(): Orientation | keyof typeof Orientation;
+    getSplitterOrientation(): Orientation;
     /**
      * Gets current value of property {@link #getSplitterPosition splitterPosition}.
      *
@@ -27904,7 +31056,7 @@ declare module "sap/ui/commons/Splitter" {
   /**
    * Describes the settings that can be provided to the Splitter constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.ui.layout.Splitter` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.ui.layout.Splitter` control.
    */
   export interface $SplitterSettings extends $ControlSettings {
     /**
@@ -27986,7 +31138,7 @@ declare module "sap/ui/commons/Tab" {
   /**
    * Represents a single tab in a TabStrip control.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.TabContainer` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.TabContainer` control.
    */
   export default class Tab extends Panel {
     /**
@@ -28072,7 +31224,7 @@ declare module "sap/ui/commons/Tab" {
      *
      * @returns Value of property `horizontalScrolling`
      */
-    getHorizontalScrolling(): Scrolling | keyof typeof Scrolling;
+    getHorizontalScrolling(): Scrolling;
     /**
      * Gets current value of property {@link #getSelected selected}.
      *
@@ -28080,8 +31232,8 @@ declare module "sap/ui/commons/Tab" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 0.17.0) - This property is not used. To identify the selected tab in a TabStrip selectedIndex
-     * is used.
+     * @deprecated As of version 0.17.0. This property is not used. To identify the selected tab in a TabStrip
+     * selectedIndex is used.
      *
      * @returns Value of property `selected`
      */
@@ -28096,7 +31248,7 @@ declare module "sap/ui/commons/Tab" {
      *
      * @returns Value of property `verticalScrolling`
      */
-    getVerticalScrolling(): Scrolling | keyof typeof Scrolling;
+    getVerticalScrolling(): Scrolling;
     /**
      * Sets a new value for property {@link #getClosable closable}.
      *
@@ -28142,8 +31294,8 @@ declare module "sap/ui/commons/Tab" {
      *
      * Default value is `false`.
      *
-     * @deprecated (since 0.17.0) - This property is not used. To identify the selected tab in a TabStrip selectedIndex
-     * is used.
+     * @deprecated As of version 0.17.0. This property is not used. To identify the selected tab in a TabStrip
+     * selectedIndex is used.
      *
      * @returns Reference to `this` in order to allow method chaining
      */
@@ -28175,7 +31327,7 @@ declare module "sap/ui/commons/Tab" {
   /**
    * Describes the settings that can be provided to the Tab constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.TabContainer` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.TabContainer` control.
    */
   export interface $TabSettings extends $PanelSettings {
     /**
@@ -28202,8 +31354,8 @@ declare module "sap/ui/commons/Tab" {
     /**
      * Defines whether the tab is the active one.
      *
-     * @deprecated (since 0.17.0) - This property is not used. To identify the selected tab in a TabStrip selectedIndex
-     * is used.
+     * @deprecated As of version 0.17.0. This property is not used. To identify the selected tab in a TabStrip
+     * selectedIndex is used.
      */
     selected?: boolean | PropertyBindingInfo | `{${string}}`;
   }
@@ -28229,7 +31381,7 @@ declare module "sap/ui/commons/TabStrip" {
    * TabStrip represents a container for tab controls, which contain the content and generally other controls.
    * The user switches between the tabs to display the content.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.TabContainer` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.TabContainer` control.
    */
   export default class TabStrip extends Control {
     /**
@@ -28666,7 +31818,7 @@ declare module "sap/ui/commons/TabStrip" {
   /**
    * Describes the settings that can be provided to the TabStrip constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.TabContainer` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.TabContainer` control.
    */
   export interface $TabStripSettings extends $ControlSettings {
     /**
@@ -28757,7 +31909,7 @@ declare module "sap/ui/commons/TextArea" {
   /**
    * Control to enter or display multible row text.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.TextArea` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.TextArea` control.
    */
   export default class TextArea extends TextField {
     /**
@@ -28864,7 +32016,7 @@ declare module "sap/ui/commons/TextArea" {
      *
      * ID of label control
      *
-     * @deprecated (since 1.5.2) - Please use association AriaLabelledBy instead.
+     * @deprecated As of version 1.5.2. Please use association AriaLabelledBy instead.
      *
      * @returns Value of property `labeledBy`
      */
@@ -28886,7 +32038,7 @@ declare module "sap/ui/commons/TextArea" {
      *
      * @returns Value of property `wrapping`
      */
-    getWrapping(): Wrapping | keyof typeof Wrapping;
+    getWrapping(): Wrapping;
     /**
      * Sets a new value for property {@link #getCols cols}.
      *
@@ -28955,7 +32107,7 @@ declare module "sap/ui/commons/TextArea" {
      *
      * When called with a value of `null` or `undefined`, the default value of the property will be restored.
      *
-     * @deprecated (since 1.5.2) - Please use association AriaLabelledBy instead.
+     * @deprecated As of version 1.5.2. Please use association AriaLabelledBy instead.
      *
      * @returns Reference to `this` in order to allow method chaining
      */
@@ -29013,7 +32165,7 @@ declare module "sap/ui/commons/TextArea" {
   /**
    * Describes the settings that can be provided to the TextArea constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.TextArea` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.TextArea` control.
    */
   export interface $TextAreaSettings extends $TextFieldSettings {
     /**
@@ -29053,7 +32205,7 @@ declare module "sap/ui/commons/TextArea" {
     /**
      * ID of label control
      *
-     * @deprecated (since 1.5.2) - Please use association AriaLabelledBy instead.
+     * @deprecated As of version 1.5.2. Please use association AriaLabelledBy instead.
      */
     labeledBy?: string | PropertyBindingInfo;
   }
@@ -29085,7 +32237,7 @@ declare module "sap/ui/commons/TextView" {
   /**
    * Is used to display some continous text. The control can inherit the text direction from its parent control.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Text}.
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Text}.
    */
   export default class TextView
     extends Control
@@ -29211,7 +32363,7 @@ declare module "sap/ui/commons/TextView" {
      *
      * @returns Value of property `accessibleRole`
      */
-    getAccessibleRole(): AccessibleRole | keyof typeof AccessibleRole;
+    getAccessibleRole(): AccessibleRole;
     /**
      * Returns array of IDs of the elements which are the current targets of the association {@link #getAriaDescribedBy ariaDescribedBy}.
      */
@@ -29230,7 +32382,7 @@ declare module "sap/ui/commons/TextView" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): TextViewDesign | keyof typeof TextViewDesign;
+    getDesign(): TextViewDesign;
     /**
      * Gets current value of property {@link #getEnabled enabled}.
      *
@@ -29264,7 +32416,7 @@ declare module "sap/ui/commons/TextView" {
      *
      * @returns Value of property `semanticColor`
      */
-    getSemanticColor(): TextViewColor | keyof typeof TextViewColor;
+    getSemanticColor(): TextViewColor;
     /**
      * Gets current value of property {@link #getText text}.
      *
@@ -29286,7 +32438,7 @@ declare module "sap/ui/commons/TextView" {
      *
      * @returns Value of property `textAlign`
      */
-    getTextAlign(): TextAlign | keyof typeof TextAlign;
+    getTextAlign(): TextAlign;
     /**
      * Gets current value of property {@link #getTextDirection textDirection}.
      *
@@ -29298,7 +32450,7 @@ declare module "sap/ui/commons/TextView" {
      *
      * @returns Value of property `textDirection`
      */
-    getTextDirection(): TextDirection | keyof typeof TextDirection;
+    getTextDirection(): TextDirection;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -29546,7 +32698,7 @@ declare module "sap/ui/commons/TextView" {
   /**
    * Describes the settings that can be provided to the TextView constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Text}.
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Text}.
    */
   export interface $TextViewSettings extends $ControlSettings {
     /**
@@ -29641,7 +32793,7 @@ declare module "sap/ui/commons/Title" {
   /**
    * Represents a title element that can be used for aggregation with other controls
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.core library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.core library. Please use this one.
    */
   export default class Title extends Title1 {
     /**
@@ -29724,7 +32876,7 @@ declare module "sap/ui/commons/Title" {
      *
      * @returns the value of property `level`
      */
-    getLevel(): TitleLevel | keyof typeof TitleLevel;
+    getLevel(): TitleLevel;
     /**
      * Setter for property `level`.
      *
@@ -29744,7 +32896,7 @@ declare module "sap/ui/commons/Title" {
   /**
    * Describes the settings that can be provided to the Title constructor.
    *
-   * @deprecated (since 1.16.0) - moved to sap.ui.core library. Please use this one.
+   * @deprecated As of version 1.16.0. moved to sap.ui.core library. Please use this one.
    */
   export interface $TitleSettings extends $TitleSettings1 {}
 }
@@ -29761,7 +32913,7 @@ declare module "sap/ui/commons/ToggleButton" {
   /**
    * The ToggleButton Control is a Button that can be toggled between pressed and normal state
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.ToggleButton}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.ToggleButton}
    */
   export default class ToggleButton extends Button {
     /**
@@ -29868,7 +33020,7 @@ declare module "sap/ui/commons/ToggleButton" {
   /**
    * Describes the settings that can be provided to the ToggleButton constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.ToggleButton}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.ToggleButton}
    */
   export interface $ToggleButtonSettings extends $ButtonSettings {
     /**
@@ -29897,7 +33049,7 @@ declare module "sap/ui/commons/Toolbar" {
    * Note that all controls with the sap.ui.commons.ToolbarItem interface can be used as item: Button, ComboBox,
    * TextField.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Toolbar}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Toolbar}
    */
   export default class Toolbar extends Control implements Toolbar1 {
     __implements__sap_ui_core_Toolbar: boolean;
@@ -30011,7 +33163,7 @@ declare module "sap/ui/commons/Toolbar" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): ToolbarDesign | keyof typeof ToolbarDesign;
+    getDesign(): ToolbarDesign;
     /**
      * Gets content of aggregation {@link #getItems items}.
      *
@@ -30212,7 +33364,7 @@ declare module "sap/ui/commons/Toolbar" {
   /**
    * Describes the settings that can be provided to the Toolbar constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Toolbar}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Toolbar}
    */
   export interface $ToolbarSettings extends $ControlSettings {
     /**
@@ -30268,7 +33420,7 @@ declare module "sap/ui/commons/ToolbarSeparator" {
    * A small vertical line that is generally added to the tool bar between the items to visually separate
    * them.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Toolbar` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Toolbar` control.
    */
   export default class ToolbarSeparator
     extends UI5Element
@@ -30345,7 +33497,7 @@ declare module "sap/ui/commons/ToolbarSeparator" {
      *
      * @returns Value of property `design`
      */
-    getDesign(): ToolbarSeparatorDesign | keyof typeof ToolbarSeparatorDesign;
+    getDesign(): ToolbarSeparatorDesign;
     /**
      * Gets current value of property {@link #getDisplayVisualSeparator displayVisualSeparator}.
      *
@@ -30395,7 +33547,7 @@ declare module "sap/ui/commons/ToolbarSeparator" {
   /**
    * Describes the settings that can be provided to the ToolbarSeparator constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Toolbar` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Toolbar` control.
    */
   export interface $ToolbarSeparatorSettings extends $ElementSettings {
     /**
@@ -30436,7 +33588,7 @@ declare module "sap/ui/commons/Tree" {
   /**
    * Simple tree to display item in a hierarchical way
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Tree}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Tree}
    */
   export default class Tree extends Control {
     /**
@@ -30755,7 +33907,7 @@ declare module "sap/ui/commons/Tree" {
      *
      * @returns Value of property `selectionMode`
      */
-    getSelectionMode(): TreeSelectionMode | keyof typeof TreeSelectionMode;
+    getSelectionMode(): TreeSelectionMode;
     /**
      * Gets current value of property {@link #getShowHeader showHeader}.
      *
@@ -31013,7 +34165,7 @@ declare module "sap/ui/commons/Tree" {
   /**
    * Describes the settings that can be provided to the Tree constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Tree}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Tree}
    */
   export interface $TreeSettings extends $ControlSettings {
     /**
@@ -31139,7 +34291,7 @@ declare module "sap/ui/commons/TreeNode" {
   /**
    * Tree node element
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Tree}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Tree}
    */
   export default class TreeNode extends UI5Element {
     /**
@@ -31702,7 +34854,7 @@ declare module "sap/ui/commons/TreeNode" {
   /**
    * Describes the settings that can be provided to the TreeNode constructor.
    *
-   * @deprecated (since 1.38) - replaced by {@link sap.m.Tree}
+   * @deprecated As of version 1.38. replaced by {@link sap.m.Tree}
    */
   export interface $TreeNodeSettings extends $ElementSettings {
     /**
@@ -31813,7 +34965,7 @@ declare module "sap/ui/commons/TriStateCheckBox" {
    * possible which is e.g. required in checkbox trees.
    *
    * @since 1.7.2
-   * @deprecated (since 1.38) - Use {@link sap.m.CheckBox} instead.
+   * @deprecated As of version 1.38. Use {@link sap.m.CheckBox} instead.
    */
   export default class TriStateCheckBox extends Control {
     /**
@@ -31988,9 +35140,7 @@ declare module "sap/ui/commons/TriStateCheckBox" {
      *
      * @returns Value of property `selectionState`
      */
-    getSelectionState():
-      | TriStateCheckBoxState
-      | keyof typeof TriStateCheckBoxState;
+    getSelectionState(): TriStateCheckBoxState;
     /**
      * Gets current value of property {@link #getText text}.
      *
@@ -32011,7 +35161,7 @@ declare module "sap/ui/commons/TriStateCheckBox" {
      *
      * @returns Value of property `textDirection`
      */
-    getTextDirection(): TextDirection | keyof typeof TextDirection;
+    getTextDirection(): TextDirection;
     /**
      * Gets current value of property {@link #getValueState valueState}.
      *
@@ -32022,7 +35172,7 @@ declare module "sap/ui/commons/TriStateCheckBox" {
      *
      * @returns Value of property `valueState`
      */
-    getValueState(): ValueState | keyof typeof ValueState;
+    getValueState(): ValueState;
     /**
      * Gets current value of property {@link #getWidth width}.
      *
@@ -32172,7 +35322,7 @@ declare module "sap/ui/commons/TriStateCheckBox" {
   /**
    * Describes the settings that can be provided to the TriStateCheckBox constructor.
    *
-   * @deprecated (since 1.38) - Use {@link sap.m.CheckBox} instead.
+   * @deprecated As of version 1.38. Use {@link sap.m.CheckBox} instead.
    */
   export interface $TriStateCheckBoxSettings extends $ControlSettings {
     /**
@@ -32263,7 +35413,7 @@ declare module "sap/ui/commons/ValueHelpField" {
   /**
    * A TextField with an attached icon which triggeres an event.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Input` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Input` control.
    */
   export default class ValueHelpField extends TextField {
     /**
@@ -32505,7 +35655,7 @@ declare module "sap/ui/commons/ValueHelpField" {
   /**
    * Describes the settings that can be provided to the ValueHelpField constructor.
    *
-   * @deprecated (since 1.38) - Instead, use the `sap.m.Input` control.
+   * @deprecated As of version 1.38. Instead, use the `sap.m.Input` control.
    */
   export interface $ValueHelpFieldSettings extends $TextFieldSettings {
     /**
@@ -32580,7 +35730,11 @@ declare namespace sap {
 
     "sap/ui/commons/FileUploader": undefined;
 
+    "sap/ui/commons/FileUploaderHttpRequestMethod": undefined;
+
     "sap/ui/commons/FileUploaderParameter": undefined;
+
+    "sap/ui/commons/FileUploaderXHRSettings": undefined;
 
     "sap/ui/commons/form/Form": undefined;
 
